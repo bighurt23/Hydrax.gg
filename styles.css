@@ -126,3 +126,31 @@ footer{border-top:1px solid var(--line);margin-top:60px;padding:30px 26px 50px;t
   .grid2,.out,.ecogrid,.geargrid{grid-template-columns:1fr}
   .pro .proinner{grid-template-columns:1fr}
 }
+
+/* ── blog + articles ─────────────────────────────────────────────────────── */
+.bloglist{max-width:880px;margin:28px auto;padding:0 26px;display:grid;gap:16px}
+.bloglist h1{font-size:30px;margin:6px 0 4px}
+.bloglist .sub{margin-bottom:14px}
+.postcard{display:block;background:linear-gradient(180deg,var(--panel),#11101a);border:1px solid var(--line);
+  border-radius:16px;padding:20px 22px}
+.postcard:hover{border-color:var(--pink)}
+.postcard h3{margin:0 0 6px;font-size:20px;color:var(--txt)}
+.postcard p{color:var(--dim);margin:0 0 8px}
+.postcard .meta{color:var(--pur2);font-size:11px;text-transform:uppercase;letter-spacing:.6px}
+.crumbs{max-width:760px;margin:18px auto 0;padding:0 26px;font-size:13px;color:var(--dim)}
+.crumbs a{color:var(--pur2)}
+.article{max-width:760px;margin:14px auto 60px;padding:0 26px}
+.article h1{font-size:clamp(26px,4vw,40px);margin:6px 0 10px;
+  background:linear-gradient(90deg,var(--pur2),var(--pink2),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
+.article .meta{color:var(--dim);font-size:13px;margin-bottom:22px}
+.article h2{font-size:24px;margin:30px 0 10px;color:var(--pur2)}
+.article h3{font-size:18px;margin:20px 0 6px}
+.article p,.article li{color:#cfc7dd;font-size:16px;line-height:1.7}
+.article .lead{font-size:18px;color:var(--txt)}
+.article a{color:var(--cyan);text-decoration:underline}
+.article ul,.article ol{padding-left:22px}
+.article .cta{background:linear-gradient(135deg,#1a1330,#120e1e);border:1px solid var(--pink);
+  border-radius:14px;padding:18px 22px;margin:26px 0;text-align:center}
+.article table{width:100%;border-collapse:collapse;margin:16px 0;font-size:15px}
+.article th,.article td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+.article th{background:var(--panel2);color:var(--pur2)}
