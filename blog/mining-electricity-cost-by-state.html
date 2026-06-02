@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Mining Electricity Costs by US State (2026)</title>
+<meta name="description" content="Your electricity rate makes or breaks mining profit. Here is how US states compare on cost per kWh and what it means for your rig's bottom line."/>
+<meta name="theme-color" content="#0a0a12"/>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9A%A1%3C/text%3E%3C/svg%3E"/>
+<link rel="canonical" href="https://hydrax.gg/blog/mining-electricity-cost-by-state.html"/>
+<meta property="og:type" content="article"/>
+<meta property="og:title" content="Mining Electricity Costs by US State (2026)"/>
+<meta property="og:description" content="How US states compare on cost per kWh, and what your rate means for mining profit."/>
+<link rel="stylesheet" href="../styles.css"/>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Which US states are cheapest for crypto mining?","acceptedAnswer":{"@type":"Answer","text":"States with abundant hydro, wind, or low-cost generation tend to have the cheapest residential electricity, which is what most home miners pay. Washington, Idaho, Utah, North Dakota, Wyoming, and Nebraska all sit in the roughly $0.10 to $0.12 per kWh range on average. The most expensive places are Hawaii by a wide margin, followed by California, Connecticut, Massachusetts, and Rhode Island, which can run $0.30 per kWh or more. These are approximate averages, so always confirm against your own utility bill."}},
+{"@type":"Question","name":"How much electricity does a mining rig use?","acceptedAnswer":{"@type":"Answer","text":"Use the formula watts divided by 1000, times hours, times your rate. A single GPU pulling about 200 watts at the wall and running 24 hours uses roughly 4.8 kWh per day, or about 144 kWh per month. A six-GPU rig near 1,200 watts uses around 864 kWh per month. Bitcoin ASICs draw far more, often 3,000 watts or higher, so a single unit can use well over 2,000 kWh per month. Always measure total wall power, not just the GPU's rated TDP."}},
+{"@type":"Question","name":"What electricity rate do I need to mine profitably?","acceptedAnswer":{"@type":"Answer","text":"There is no single threshold because it depends on the coin, your hardware efficiency, and the coin price. As a rough guide, rates near $0.10 to $0.12 per kWh keep most modern, efficient rigs in the black, the $0.15 to $0.20 range squeezes margins, and $0.30 or more makes general-purpose mining a loss for most setups. The only honest answer is to enter your exact rate and rig power into a profit calculator and check the net result for your specific coin."}}]}
+</script>
+</head>
+<body>
+<div class="bg"></div>
+<header>
+  <a class="logo" href="../"><span class="spark">&#9889;</span> Hydrax<span class="gg">.GG</span></a>
+  <nav>
+    <a href="../#calc">Calculators</a>
+    <a href="../#gear">Best Gear</a>
+    <a href="./">Blog</a>
+    <a href="../#pro" class="navpro">Pro Tracker</a>
+  </nav>
+</header>
+
+<div class="crumbs"><a href="../">Home</a> &rsaquo; <a href="./">Blog</a> &rsaquo; Mining electricity costs by US state</div>
+
+<article class="article">
+  <h1>Mining Electricity Costs by US State (2026)</h1>
+  <div class="meta">Costs &middot; ~6 min read &middot; by the Hydrax.GG team</div>
+  <p class="lead">Two miners with identical rigs can have opposite outcomes. <strong>The difference is almost always the electricity rate &mdash; it is the single biggest lever on whether your rig prints or bleeds.</strong></p>
+  <p>Electricity is the largest ongoing cost in mining, and in the US it varies enormously by state. The cheapest states are nearly three times cheaper per kilowatt-hour than the most expensive ones, and that spread alone can flip a setup from profitable to underwater. Below we lay out how states compare, the simple math to turn watts into dollars, and how to nail down your <em>exact</em> cost. When you want a real number for your rig, the <a href="../#calc">electricity cost calculator</a> has a region selector that fills in your state's average for you.</p>
+
+  <h2>Why your rate matters more than your hardware</h2>
+  <p>It is tempting to obsess over hashrate, but power cost decides far more of your bottom line. A rig running flat-out 24/7 turns watts into a fixed monthly bill regardless of coin price. When the coin pumps, a cheap rate makes you very profitable; when it dumps, a cheap rate is often the only thing keeping you above water. A high rate, by contrast, gives you almost no margin for error &mdash; one difficulty bump or price dip and you are mining at a loss. This is the same point we make in our <a href="../is-gpu-mining-profitable-2026.html">guide on whether GPU mining is still profitable</a>: cheap power is the prerequisite, not the bonus.</p>
+
+  <h2>Cheap vs expensive states at a glance</h2>
+  <p>The table below shows <strong>approximate residential averages</strong>, not exact or current rates. Residential is what most home miners actually pay, but it is the right number to start from. Rates move with season, demand, and utility, so treat these as ballpark tiers, not quotes.</p>
+  <table>
+    <tr><th>State</th><th>Approx. residential $/kWh</th><th>Tier</th></tr>
+    <tr><td>Washington</td><td>~$0.10</td><td>Cheap</td></tr>
+    <tr><td>Idaho</td><td>~$0.11</td><td>Cheap</td></tr>
+    <tr><td>Utah</td><td>~$0.11</td><td>Cheap</td></tr>
+    <tr><td>North Dakota</td><td>~$0.11</td><td>Cheap</td></tr>
+    <tr><td>Nebraska</td><td>~$0.11</td><td>Cheap</td></tr>
+    <tr><td>Wyoming</td><td>~$0.12</td><td>Cheap</td></tr>
+    <tr><td>Rhode Island</td><td>~$0.30</td><td>Expensive</td></tr>
+    <tr><td>Massachusetts</td><td>~$0.31</td><td>Expensive</td></tr>
+    <tr><td>Connecticut</td><td>~$0.32</td><td>Expensive</td></tr>
+    <tr><td>California</td><td>~$0.32</td><td>Expensive</td></tr>
+    <tr><td>Hawaii</td><td>~$0.42+</td><td>Highest</td></tr>
+  </table>
+  <p>The cheap states cluster around hydro, wind, and other low-cost generation &mdash; the Pacific Northwest and parts of the Mountain West and Plains. The expensive end is dominated by the Northeast and California, with Hawaii in a category of its own because it leans heavily on imported fuel. The gap between roughly $0.11 and $0.32 is not a rounding error; it is the difference between a healthy margin and a money pit on the exact same hardware.</p>
+
+  <div class="cta">
+    <strong>See your state's rate in one click &rarr;</strong><br/>
+    <a class="btn primary" href="../#calc">Open the Mining Profit Calculator</a>
+  </div>
+
+  <h2>The kWh math, in plain terms</h2>
+  <p>Turning power into dollars is one short formula:</p>
+  <table>
+    <tr><th>Step</th><th>What you compute</th></tr>
+    <tr><td>1. Kilowatts</td><td>rig watts at the wall &divide; 1000</td></tr>
+    <tr><td>2. Daily kWh</td><td>kilowatts &times; hours run per day</td></tr>
+    <tr><td>3. Daily cost</td><td>daily kWh &times; your $/kWh rate</td></tr>
+  </table>
+  <p>So the full one-liner is <strong>(watts &divide; 1000) &times; hours &times; rate</strong>. A single GPU pulling <strong>200 W</strong> at the wall, running 24 hours, uses <strong>0.2 kW &times; 24 = 4.8 kWh per day</strong>. At a cheap <strong>$0.11/kWh</strong> that is about <strong>$0.53/day</strong>; at an expensive <strong>$0.32/kWh</strong> it jumps to <strong>$1.54/day</strong> &mdash; nearly triple, for the same coins earned. Scale that to a six-card rig near 1,200 W and the monthly gap balloons to well over a hundred dollars. For the full revenue-minus-cost picture, walk through our <a href="../how-to-calculate-mining-profit.html">step-by-step profit guide</a>.</p>
+
+  <h2>Read the exact rate off your own bill</h2>
+  <p>State averages are a starting point, not your real number. Your actual cost can differ for several reasons, and they all matter:</p>
+  <ul>
+    <li><strong>Delivery and fees</strong> &mdash; your bill includes more than the raw energy charge. Distribution, transmission, and surcharges can add several cents per kWh, so the headline rate understates what you really pay.</li>
+    <li><strong>Tiered pricing</strong> &mdash; many utilities charge more per kWh above a usage threshold. A 24/7 rig pushes you into the highest tier, so your marginal cost can be well above the average.</li>
+    <li><strong>Commercial and industrial rates</strong> &mdash; these differ from residential, often lower per kWh but with demand charges. If you mine at scale or out of a business, residential averages do not apply to you.</li>
+    <li><strong>Time-of-use plans</strong> &mdash; some areas charge by hour, with cheap overnight windows and pricey afternoon peaks. Mining only during off-peak hours can dramatically cut your effective rate.</li>
+  </ul>
+  <p>To find your true number, take total dollars on the bill and divide by total kWh used &mdash; that blended figure already bakes in fees and tiers. Plug that into the calculator instead of a state average for the most honest result.</p>
+
+  <h2>Low rates are not the whole story</h2>
+  <p>Cheap power is the foundation, but it does not erase the other variables. Coin price, network difficulty, and hardware efficiency still decide whether you profit, which is why even miners in cheap states should pick coins carefully &mdash; see our <a href="../most-profitable-coin-to-mine-2026.html">most-profitable-coin breakdown</a>. Efficiency matters too: a newer, more efficient card earns the same hashrate for fewer watts, so it stretches every kilowatt-hour further. Shopping <a href="../#gear">efficient and renewed GPUs</a> can lower both your purchase price and your ongoing power draw at once. The goal is to stack the deck: low rate, efficient hardware, and a coin worth mining.</p>
+
+  <h2>Track it over time, not just once</h2>
+  <p>Your rate is not frozen. Utilities raise prices, seasons shift demand, and a winter spike can quietly turn a profitable rig into a losing one without you noticing. Checking once tells you whether to start; logging it month over month tells you whether to keep going &mdash; and it is what you will want at tax time. That is the gap the <a href="../#pro">Hydrax Pro Tracker</a> fills: it logs power costs, income, and depreciation across every rig and ASIC so you always know your real profit, not a hopeful estimate. Use the free calculator to decide, and the tracker to stay honest as rates drift.</p>
+
+  <h3 class="faq">Frequently asked</h3>
+  <p><strong>Do these rates apply to large mining operations?</strong> Not directly &mdash; the table shows residential averages. Commercial and industrial customers often get different rates with demand charges, so a serious operation should use its actual contracted rate in the <a href="../#calc">calculator</a> rather than a residential average.</p>
+  <p><strong>Is it worth moving to a cheaper state to mine?</strong> Rarely for a hobby rig, since the savings on a card or two will not offset relocation. At scale it is exactly why large farms cluster in cheap-power regions. For most people, the win is reading your true rate and choosing efficient gear &mdash; compare options in our <a href="../best-mining-gpu-2026.html">best mining GPU guide</a>.</p>
+  <p><strong>What if my rate is over $0.30/kWh?</strong> General-purpose mining is tough to keep profitable there, but it is not automatically hopeless &mdash; a very efficient setup on the right coin during off-peak hours can still work. Run your exact numbers in the <a href="../#calc">calculator</a> before assuming either way.</p>
+
+  <div class="cta">
+    <strong>Know your real cost before you plug in.</strong><br/>
+    <a class="btn primary" href="../#calc">Open the free calculator &rarr;</a>
+  </div>
+  <p style="color:var(--dim);font-size:13px;margin-top:24px">Estimates only. Electricity rates shown are approximate averages that change over time and by utility; always confirm against your own bill. Not financial advice.</p>
+</article>
+</body>
+</html>
