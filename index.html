@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Hydrax.GG — Free Crypto Mining Profit & ROI Calculators</title>
+<meta name="description" content="Free, accurate crypto mining calculators for GPU rigs and ASIC miners. Work out daily profit, payback period and electricity cost in seconds — built by the team behind the HydraX miner and Operator dashboard."/>
+<meta name="theme-color" content="#0a0a12"/>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9A%A1%3C/text%3E%3C/svg%3E"/>
+<!-- Open Graph / social -->
+<meta property="og:title" content="Hydrax.GG — Crypto Mining Calculators"/>
+<meta property="og:description" content="Free mining profit, ROI and electricity calculators for GPU & ASIC miners."/>
+<meta property="og:type" content="website"/>
+<link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+<div class="bg"></div>
+
+<header>
+  <a class="logo" href="#top"><span class="spark">⚡</span> Hydrax<span class="gg">.GG</span></a>
+  <nav>
+    <a href="#calc">Calculators</a>
+    <a href="#gear">Best Gear</a>
+    <a href="#ecosystem">HydraX Miner</a>
+    <a href="#pro" class="navpro">Pro Tracker</a>
+  </nav>
+  <div class="ticker" id="ticker">loading live prices…</div>
+</header>
+
+<section class="hero" id="top">
+  <h1>Know exactly what your mining rig earns.</h1>
+  <p class="lede">Free, accurate calculators for GPU rigs and ASIC miners — daily profit, payback period
+     and electricity cost in seconds. No signup. Built by miners who actually build the software.</p>
+  <div class="herobtns">
+    <a class="btn primary" href="#calc">Run the numbers →</a>
+    <a class="btn ghost" href="#ecosystem">Meet the HydraX miner</a>
+  </div>
+  <div class="tabs" id="tabs">
+    <button class="tab active" data-t="profit">💰 Profit Calculator</button>
+    <button class="tab" data-t="roi">📈 ROI / Breakeven</button>
+    <button class="tab" data-t="power">🔌 Electricity Cost</button>
+  </div>
+</section>
+
+<main id="calc">
+  <!-- PROFIT -->
+  <section class="panel" data-p="profit">
+    <h2>Mining Profit Calculator</h2>
+    <p class="sub">Enter your rig's numbers. Use the live coin price auto-fill, or type a gross daily revenue
+       figure straight from WhatToMine or your pool dashboard.</p>
+    <div class="grid2">
+      <label>Revenue mode
+        <select id="pr-mode">
+          <option value="gross">I know my gross $/day</option>
+          <option value="coins">Coins/day × live price</option>
+        </select>
+      </label>
+      <label id="pr-gross-wrap">Gross revenue ($/day)
+        <input id="pr-gross" type="number" step="0.01" value="5.00"></label>
+      <label id="pr-coin-wrap" class="hidden">Coin
+        <select id="pr-coin"></select></label>
+      <label id="pr-amt-wrap" class="hidden">Coins mined / day
+        <input id="pr-amt" type="number" step="0.0001" value="0.05"></label>
+      <label id="pr-price-wrap" class="hidden">Coin price ($) <span class="live" id="pr-live"></span>
+        <input id="pr-price" type="number" step="0.01" value="0"></label>
+      <label>Power draw (Watts)
+        <input id="pr-watts" type="number" value="1200"></label>
+      <label>Electricity rate ($/kWh)
+        <input id="pr-rate" type="number" step="0.001" value="0.12"></label>
+      <label>Pool / dev fee (%)
+        <input id="pr-fee" type="number" step="0.1" value="1"></label>
+      <label>Uptime (%)
+        <input id="pr-uptime" type="number" step="1" value="98"></label>
+    </div>
+    <div class="out" id="pr-out"></div>
+  </section>
+
+  <!-- ROI -->
+  <section class="panel hidden" data-p="roi">
+    <h2>ROI &amp; Breakeven Calculator</h2>
+    <p class="sub">How long until your hardware pays for itself — with optional difficulty growth so the
+       estimate stays honest (your share of block rewards shrinks as the network grows).</p>
+    <div class="grid2">
+      <label>Hardware cost ($)
+        <input id="roi-cost" type="number" value="3000"></label>
+      <label>Net profit ($/day, today)
+        <input id="roi-profit" type="number" step="0.01" value="4.00"></label>
+      <label>Monthly difficulty growth (%)
+        <input id="roi-growth" type="number" step="0.5" value="3"></label>
+    </div>
+    <div class="out" id="roi-out"></div>
+  </section>
+
+  <!-- POWER -->
+  <section class="panel hidden" data-p="power">
+    <h2>Electricity Cost Calculator</h2>
+    <p class="sub">What your rig actually costs to run — the number that quietly eats most miners' profit.</p>
+    <div class="grid2">
+      <label>Power draw (Watts)
+        <input id="pw-watts" type="number" value="1200"></label>
+      <label>Electricity rate ($/kWh)
+        <input id="pw-rate" type="number" step="0.001" value="0.12"></label>
+      <label>Hours per day
+        <input id="pw-hours" type="number" step="1" value="24"></label>
+    </div>
+    <div class="out" id="pw-out"></div>
+  </section>
+</main>
+
+<!-- ECOSYSTEM — the moat -->
+<section class="eco" id="ecosystem">
+  <div class="ecohead">
+    <h2>Built by miners who build the miner.</h2>
+    <p>Hydrax.GG isn't a link farm — it's the front porch of a real mining stack. We write the software that
+       runs on the rigs these calculators describe.</p>
+  </div>
+  <div class="ecogrid">
+    <div class="ecocard">
+      <div class="ecoicon">⛏</div>
+      <h3>HydraX Miner</h3>
+      <p>Our own GPU + CPU miner. KawPow ~41 MH/s (rival-class), Etchash 107 MH/s, RandomX tuned for Ryzen.
+         Real engineering, not a reskin.</p>
+      <span class="soon">coming to Hydrax.GG</span>
+    </div>
+    <div class="ecocard featured">
+      <div class="ecoicon">🖥</div>
+      <h3>HydraX Operator</h3>
+      <p>One dashboard to monitor &amp; control your whole fleet — GPUs and ASICs. Hot-swap pools and algos,
+         start/stop, live P&amp;L. The dashboard these calculators feed into.</p>
+      <a class="btn small" href="#" id="op-link">Operator dashboard →</a>
+    </div>
+    <div class="ecocard">
+      <div class="ecoicon">🌿</div>
+      <h3>Hydra Chain</h3>
+      <p>The endgame: a green, quantum-resistant GPU-mined L1 (Proof-of-Efficient-Work). Your hashrate,
+         a better chain.</p>
+      <span class="soon">in development</span>
+    </div>
+  </div>
+</section>
+
+<!-- GEAR -->
+<section class="gear" id="gear">
+  <h2>Mining gear worth buying</h2>
+  <p class="sub">Hand-picked hardware. Links may earn us a commission at no cost to you — it keeps these tools free.</p>
+  <div class="geargrid">
+    <a class="gecard" href="#" data-aff>
+      <span class="tag">Best value GPU</span>
+      <h3>Efficient GPU pick</h3>
+      <p>Top hashrate-per-watt card for new rigs. Swap in your affiliate link.</p>
+      <span class="price">Check price →</span></a>
+    <a class="geard" href="#" data-aff>
+      <span class="tag">ASIC</span>
+      <h3>Entry ASIC miner</h3>
+      <p>Plug-and-play unit for hands-off mining. Swap in your affiliate link.</p>
+      <span class="price">Check price →</span></a>
+    <a class="geard" href="#" data-aff>
+      <span class="tag">Essential</span>
+      <h3>Platinum PSU</h3>
+      <p>Stable, efficient power delivery — the part too many miners cheap out on.</p>
+      <span class="price">Check price →</span></a>
+  </div>
+</section>
+
+<!-- PRO -->
+<section class="pro" id="pro">
+  <div class="proinner">
+    <div>
+      <span class="tag">Premium</span>
+      <h2>Hydrax Pro Tracker</h2>
+      <p>A full mining operation P&amp;L in one spreadsheet: track every rig and ASIC, power cost, pool fees,
+         depreciation, breakeven dates, and a tax-basis tab. Built for miners who run it like a business.</p>
+      <ul>
+        <li>Per-rig &amp; per-ASIC tracking</li>
+        <li>Daily / monthly / yearly profit roll-ups</li>
+        <li>Breakeven &amp; ROI dashboard</li>
+        <li>Tax-basis &amp; depreciation tab</li>
+      </ul>
+    </div>
+    <div class="prebuy">
+      <div class="bigprice">$39</div>
+      <a class="btn primary" href="#" id="buy-link">Get the Pro Tracker</a>
+      <div class="fineprint">One-time purchase · lifetime updates</div>
+    </div>
+  </div>
+</section>
+
+<!-- SEO content -->
+<section class="learn">
+  <h2>How to read your mining numbers</h2>
+  <p>Profitable mining comes down to three levers: <b>revenue</b> (coin price × your share of the network),
+     <b>power cost</b> (watts × your electricity rate), and <b>hardware payback</b> (how fast the rig earns
+     back what you paid). Get those three right and everything else is noise.</p>
+  <h3>Why electricity rate matters most</h3>
+  <p>At $0.12/kWh a 1,200 W rig burns about <b>$3.46/day</b> in power before it earns a cent. Drop to
+     $0.06/kWh and you've nearly doubled your margin without touching the hardware. Run the Electricity Cost
+     tab above to find your own break-even power price.</p>
+  <h3>Don't forget difficulty growth</h3>
+  <p>Network difficulty tends to climb, which slowly shrinks your share of block rewards. The ROI calculator
+     lets you model that so your payback estimate isn't fantasy.</p>
+</section>
+
+<footer>
+  <div class="logo small"><span class="spark">⚡</span> Hydrax<span class="gg">.GG</span></div>
+  <p class="disclaimer">Estimates only. Mining returns vary with coin price, network difficulty and your
+     electricity rate. Not financial advice.</p>
+  <p class="copy">© <span id="yr"></span> Hydrax.GG · part of the HydraX mining stack</p>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
