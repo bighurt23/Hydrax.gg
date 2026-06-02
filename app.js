@@ -11,8 +11,8 @@ document.getElementById('yr').textContent = new Date().getFullYear();
 
 /* ── affiliate / product links (swap these for your real URLs) ──────────────── */
 const LINKS = {
-  buy:  'https://gumroad.com/',          // Pro Tracker checkout — replace with your Gumroad link
-  operator: 'http://localhost:7777',     // Operator console — replace with hydraxoperator.com
+  buy:  'https://wyattjr6.gumroad.com/l/gyanqh',  // Pro Tracker — Gumroad checkout
+  operator: '#ecosystem',                          // Operator console — set to its public URL when live
 };
 const bl = $('buy-link'); if (bl) bl.href = LINKS.buy;
 const ol = $('op-link');  if (ol) ol.href = LINKS.operator;
