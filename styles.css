@@ -100,6 +100,13 @@ section.eco,section.gear,section.pro,section.learn{max-width:var(--maxw);margin:
 .ecocard h3,.gecard h3,.geard h3{margin:0 0 8px;font-size:17px}
 .ecocard p,.gecard p,.geard p{color:var(--dim);font-size:14px;margin:0 0 12px}
 .soon{font-size:11px;color:var(--amb);border:1px solid #4a3a1a;border-radius:20px;padding:3px 10px}
+.soon.beta{color:var(--pink2);border-color:#5a2a44;background:rgba(255,46,151,.10)}
+.betaform{display:flex;gap:8px;margin-top:6px}
+.betaform input{flex:1;min-width:0}
+.betaform .btn.small{white-space:nowrap}
+.betamsg{color:var(--dim);font-size:12px;margin-top:8px}
+.btn.ghost.pro{border-color:var(--pink);color:var(--pink2)}
+.btn.ghost.pro:hover{background:rgba(255,46,151,.10);border-color:var(--pink)}
 .tag{font-size:11px;color:var(--pur2);border:1px solid var(--line);border-radius:20px;padding:3px 10px;
   text-transform:uppercase;letter-spacing:.6px;display:inline-block;margin-bottom:10px}
 .gecard .price,.geard .price{color:var(--cyan);font-weight:700;font-size:14px}

@@ -12,10 +12,41 @@ document.getElementById('yr').textContent = new Date().getFullYear();
 /* ── affiliate / product links (swap these for your real URLs) ──────────────── */
 const LINKS = {
   buy:  'https://wyattjr6.gumroad.com/l/gyanqh',  // Pro Tracker — Gumroad checkout
-  operator: '#ecosystem',                          // Operator console — set to its public URL when live
 };
 const bl = $('buy-link'); if (bl) bl.href = LINKS.buy;
-const ol = $('op-link');  if (ol) ol.href = LINKS.operator;
+
+/* ── Operator private-beta waitlist ──────────────────────────────────────────────
+   Set BETA.endpoint to a Formspree URL (https://formspree.io/f/xxxx) to capture
+   signups straight to your inbox (no client needed). Until then, signups open a
+   mailto to BETA.email so they still land in your inbox. */
+const BETA = {
+  endpoint: '',               // ← paste your Formspree endpoint here when ready
+  email: 'beta@hydrax.gg',    // ← waitlist inbox (mailto fallback) — confirm/replace this address
+};
+(function wireBeta(){
+  const form = $('beta-form'), msg = $('beta-msg'), inp = $('beta-email');
+  if(!form) return;
+  form.addEventListener('submit', async e=>{
+    e.preventDefault();
+    const email = (inp.value || '').trim();
+    if(!/^\S+@\S+\.\S+$/.test(email)){ msg.textContent = 'Please enter a valid email.'; return; }
+    if(BETA.endpoint){
+      msg.textContent = 'Adding you…';
+      try{
+        const r = await fetch(BETA.endpoint, { method:'POST',
+          headers:{ 'Accept':'application/json', 'Content-Type':'application/json' },
+          body: JSON.stringify({ email, _subject:'HydraX Operator beta signup', source:'hydrax.gg' }) });
+        if(r.ok){ form.style.display='none'; msg.innerHTML = "✅ You're on the list — we'll email you when the beta opens. 🐉"; return; }
+      }catch(err){}
+      msg.innerHTML = "Couldn't submit — email <b>"+BETA.email+"</b> and we'll add you.";
+    } else {
+      const sub  = encodeURIComponent('HydraX Operator beta — add me');
+      const body = encodeURIComponent('Please add me to the HydraX Operator private beta.\n\nEmail: '+email);
+      window.location.href = 'mailto:'+BETA.email+'?subject='+sub+'&body='+body;
+      msg.textContent = 'Opening your email app to confirm your spot…';
+    }
+  });
+})();
 
 /* ── live prices (CoinGecko, best-effort) ──────────────────────────────────── */
 const COINS = [
