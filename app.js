@@ -62,7 +62,11 @@ function renderTicker(stale){
     const arrow = ch >= 0 ? '▲' : '▼';
     return `${c.sym} <span class="${cls}">$${fmtN(p.usd, pdec(p.usd))} ${arrow}${Math.abs(ch).toFixed(1)}%</span>`;
   }).filter(Boolean);
-  $('ticker').innerHTML = (stale ? '<span class="dn">~ </span>' : '') + parts.join('&nbsp;·&nbsp;');
+  if(!parts.length) return;
+  const sep = '&nbsp;·&nbsp;';
+  const body = (stale ? '<span class="dn">~ </span>' : '') + parts.join(sep);
+  // duplicate the run so the -50% marquee transform loops seamlessly
+  $('ticker').innerHTML = `<span class="tickmove">${body}${sep}${body}${sep}</span>`;
 }
 
 /* ── tabs ──────────────────────────────────────────────────────────────────── */
