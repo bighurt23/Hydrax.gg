@@ -171,6 +171,51 @@ function calcPower(){
 }
 ['pw-watts','pw-rate','pw-hours'].forEach(id=>$(id).addEventListener('input', calcPower));
 
+/* ── electricity rate by region (avg residential $/kWh; user can override) ─────
+   Exact rate is on the user's bill — these are regional averages to start from. */
+const ELEC_COUNTRIES = {
+  US:["United States (avg)",0.17], CA:["Canada",0.13], MX:["Mexico",0.09], GB:["United Kingdom",0.34],
+  IE:["Ireland",0.36], DE:["Germany",0.40], FR:["France",0.28], ES:["Spain",0.25], IT:["Italy",0.36],
+  NL:["Netherlands",0.35], NO:["Norway",0.12], SE:["Sweden",0.20], FI:["Finland",0.20], PL:["Poland",0.20],
+  RU:["Russia",0.06], UA:["Ukraine",0.05], AU:["Australia",0.30], NZ:["New Zealand",0.22], CN:["China",0.08],
+  IN:["India",0.08], JP:["Japan",0.26], KR:["South Korea",0.10], BR:["Brazil",0.15], AR:["Argentina",0.06],
+  AE:["United Arab Emirates",0.08], SA:["Saudi Arabia",0.05], ZA:["South Africa",0.15], KZ:["Kazakhstan",0.05],
+  IS:["Iceland",0.14], PY:["Paraguay",0.05]
+};
+const US_STATES = {
+  AL:["Alabama",0.15],AK:["Alaska",0.24],AZ:["Arizona",0.14],AR:["Arkansas",0.12],CA:["California",0.31],
+  CO:["Colorado",0.15],CT:["Connecticut",0.30],DE:["Delaware",0.16],FL:["Florida",0.15],GA:["Georgia",0.14],
+  HI:["Hawaii",0.42],ID:["Idaho",0.11],IL:["Illinois",0.16],IN:["Indiana",0.15],IA:["Iowa",0.13],
+  KS:["Kansas",0.14],KY:["Kentucky",0.13],LA:["Louisiana",0.12],ME:["Maine",0.24],MD:["Maryland",0.17],
+  MA:["Massachusetts",0.30],MI:["Michigan",0.18],MN:["Minnesota",0.15],MS:["Mississippi",0.13],MO:["Missouri",0.12],
+  MT:["Montana",0.12],NE:["Nebraska",0.11],NV:["Nevada",0.15],NH:["New Hampshire",0.23],NJ:["New Jersey",0.18],
+  NM:["New Mexico",0.14],NY:["New York",0.23],NC:["North Carolina",0.13],ND:["North Dakota",0.11],OH:["Ohio",0.16],
+  OK:["Oklahoma",0.12],OR:["Oregon",0.13],PA:["Pennsylvania",0.18],RI:["Rhode Island",0.29],SC:["South Carolina",0.14],
+  SD:["South Dakota",0.13],TN:["Tennessee",0.13],TX:["Texas",0.15],UT:["Utah",0.11],VT:["Vermont",0.21],
+  VA:["Virginia",0.14],WA:["Washington",0.11],WV:["West Virginia",0.15],WI:["Wisconsin",0.17],WY:["Wyoming",0.12],DC:["Washington DC",0.16]
+};
+function buildLoc(sel){
+  const blank=document.createElement('option'); blank.value=""; blank.textContent="— pick your region —"; sel.appendChild(blank);
+  const g1=document.createElement('optgroup'); g1.label="Country";
+  for(const [c,[n,r]] of Object.entries(ELEC_COUNTRIES)){ const o=document.createElement('option');
+    o.value=r; o.dataset.cc=c; o.textContent=`${n} — $${r.toFixed(2)}/kWh`; g1.appendChild(o); }
+  const g2=document.createElement('optgroup'); g2.label="U.S. state";
+  for(const [c,[n,r]] of Object.entries(US_STATES)){ const o=document.createElement('option');
+    o.value=r; o.textContent=`US · ${n} — $${r.toFixed(2)}/kWh`; g2.appendChild(o); }
+  sel.appendChild(g1); sel.appendChild(g2);
+}
+function guessCC(){ try{ const m=(navigator.language||"").split("-")[1];
+  if(m && ELEC_COUNTRIES[m.toUpperCase()]) return m.toUpperCase(); }catch(e){} return null; }
+function wireLoc(selId, rateId, recalc){
+  const sel=$(selId); if(!sel) return; buildLoc(sel);
+  sel.addEventListener('change', ()=>{ if(sel.value){ $(rateId).value=sel.value; recalc(); } });
+  const cc=guessCC();
+  if(cc){ const opt=[...sel.options].find(o=>o.dataset.cc===cc);
+    if(opt){ sel.value=opt.value; $(rateId).value=opt.value; } }  // pre-fill from browser locale
+}
+wireLoc('pr-loc','pr-rate',calcProfit);
+wireLoc('pw-loc','pw-rate',calcPower);
+
 /* ── init ──────────────────────────────────────────────────────────────────── */
 toggleMode(); calcProfit(); calcRoi(); calcPower();
 loadPrices();
