@@ -167,3 +167,11 @@ footer{border-top:1px solid var(--line);margin-top:60px;padding:30px 26px 50px;t
 .article table{width:100%;border-collapse:collapse;margin:16px 0;font-size:15px}
 .article th,.article td{border:1px solid var(--line);padding:8px 10px;text-align:left}
 .article th{background:var(--panel2);color:var(--pur2)}
+
+/* ── launch announcement bar ─────────────────────────────────────────────── */
+.announce{display:block;text-align:center;padding:10px 16px;font-size:14px;font-weight:800;
+  color:#fff;text-decoration:none;letter-spacing:.2px;
+  background:linear-gradient(90deg,var(--pur),var(--pink),var(--pink2),var(--cyan))}
+.announce:hover{filter:brightness(1.08)}
+.announce .dl{text-decoration:underline;text-underline-offset:3px}
+@media (max-width:720px){ .announce{font-size:12.5px;padding:9px 12px} }
