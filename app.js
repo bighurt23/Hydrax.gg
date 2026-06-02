@@ -28,28 +28,41 @@ const COINS = [
 const MINEABLE = ['monero','ethereum-classic','ravencoin'];  // coin selector in the profit calc
 let PRICES = {};
 
-async function loadPrices(){
+function cachePrices(d){ try{ localStorage.setItem('hx_prices', JSON.stringify({t:Date.now(), d})); }catch(e){} }
+function cachedPrices(){
+  try{ const o = JSON.parse(localStorage.getItem('hx_prices') || 'null');
+       return (o && Date.now() - o.t < 21600000) ? o.d : null; }catch(e){ return null; }  // <6h old
+}
+
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+async function fetchPrices(){
   const ids = COINS.map(c=>c.id).join(',');
   const url = `https://api.coingecko.com/api/v3/simple/price?ids=${ids}&vs_currencies=usd&include_24hr_change=true`;
-  try{
-    const r = await fetch(url, {cache:'no-store'});
-    if(!r.ok) throw new Error('http '+r.status);
-    PRICES = await r.json();
-    renderTicker();
-    fillCoinPrice();
-  }catch(e){
-    $('ticker').innerHTML = '<span class="dn">live prices offline — enter coin price manually</span>';
-  }
+  const r = await fetch(url, {cache:'no-store', mode:'cors'});
+  if(!r.ok) throw new Error('http '+r.status);
+  const data = await r.json();
+  if(!data || !data.bitcoin) throw new Error('bad payload');
+  return data;
 }
-function renderTicker(){
+async function loadPrices(){
+  for(let i=0;i<3;i++){                       // retry transient rate-limits/blips
+    try{ PRICES = await fetchPrices(); cachePrices(PRICES); renderTicker(); fillCoinPrice(); return; }
+    catch(e){ if(i<2) await sleep(2500); }
+  }
+  const c = cachedPrices();                   // all retries failed → last good prices (<6h)
+  if(c){ PRICES = c; renderTicker(true); fillCoinPrice(); }
+  else { $('ticker').innerHTML = '<span class="dn">live prices loading…</span>'; }
+}
+function pdec(v){ return v < 0.01 ? 6 : (v < 1 ? 4 : 2); }
+function renderTicker(stale){
   const parts = COINS.map(c=>{
     const p = PRICES[c.id]; if(!p) return '';
     const ch = p.usd_24h_change || 0;
     const cls = ch >= 0 ? 'b' : 'dn';
     const arrow = ch >= 0 ? '▲' : '▼';
-    return `${c.sym} <span class="${cls}">$${fmtN(p.usd, p.usd<1?4:2)} ${arrow}${Math.abs(ch).toFixed(1)}%</span>`;
+    return `${c.sym} <span class="${cls}">$${fmtN(p.usd, pdec(p.usd))} ${arrow}${Math.abs(ch).toFixed(1)}%</span>`;
   }).filter(Boolean);
-  $('ticker').innerHTML = parts.join('&nbsp;·&nbsp;');
+  $('ticker').innerHTML = (stale ? '<span class="dn">~ </span>' : '') + parts.join('&nbsp;·&nbsp;');
 }
 
 /* ── tabs ──────────────────────────────────────────────────────────────────── */
