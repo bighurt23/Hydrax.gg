@@ -64,6 +64,9 @@ nav a.navpro{color:var(--pur2)}
 
 /* calculators */
 main{max-width:760px;margin:18px auto 0;padding:0 26px}
+.calchead{text-align:center;max-width:var(--maxw);margin:0 auto;padding:0 26px}
+.calchead .calctitle{font-size:28px;margin:0 0 8px}
+.calctabs{text-align:center;margin:6px 0 16px}
 .panel{background:linear-gradient(180deg,var(--panel),#11101a);border:1px solid var(--line);
   border-radius:18px;padding:26px;position:relative;overflow:hidden}
 .panel::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;

@@ -11,7 +11,7 @@
 <meta property="og:title" content="Hydrax.GG — Crypto Mining Calculators"/>
 <meta property="og:description" content="Free mining profit, ROI and electricity calculators for GPU & ASIC miners."/>
 <meta property="og:type" content="website"/>
-<link rel="stylesheet" href="styles.css?v=4"/>
+<link rel="stylesheet" href="styles.css?v=5"/>
 </head>
 <body>
 <div class="bg"></div>
@@ -33,22 +33,67 @@
 </header>
 
 <section class="hero" id="top">
-  <h1>Know exactly what your mining rig earns.</h1>
-  <p class="lede">Free, accurate calculators for GPU rigs and ASIC miners — daily profit, payback period
-     and electricity cost in seconds. No signup. Built by miners who actually build the software.</p>
+  <h1>Everything you need to mine — one stack.</h1>
+  <p class="lede">A high-performance NVIDIA miner (now in open beta), a fleet dashboard, and free
+     pro-grade calculators. Built by miners who actually write the software that runs on the rigs.</p>
   <div class="herobtns">
-    <a class="btn primary" href="#calc">Run the numbers →</a>
+    <a class="btn primary" href="https://github.com/bighurt23/hydrax-miner/releases/tag/v1.0-beta" target="_blank" rel="noopener">⬇ Download the miner beta</a>
     <a class="btn ghost pro" href="#pro">💎 Pro Tracker — $39</a>
-    <a class="btn ghost" href="#ecosystem">Meet the HydraX miner</a>
-  </div>
-  <div class="tabs" id="tabs">
-    <button class="tab active" data-t="profit">💰 Profit Calculator</button>
-    <button class="tab" data-t="roi">📈 ROI / Breakeven</button>
-    <button class="tab" data-t="power">🔌 Electricity Cost</button>
+    <a class="btn ghost" href="#calc">Free calculators →</a>
   </div>
 </section>
 
+<!-- ECOSYSTEM — the product, front and center -->
+<section class="eco" id="ecosystem">
+  <div class="ecohead">
+    <h2>Built by miners who build the miner.</h2>
+    <p>Hydrax.GG isn't a link farm — it's the front porch of a real mining stack. We write the software that
+       runs on the rigs these calculators describe.</p>
+  </div>
+  <div class="ecogrid">
+    <div class="ecocard">
+      <div class="ecoicon">⛏</div>
+      <h3>HydraX Miner <span class="soon beta">NVIDIA beta</span></h3>
+      <p>Our own high-performance GPU + CPU miner — Ethereum Classic &amp; Ravencoin on the GPU,
+         Monero on the CPU. Built to compete with the top mining software. Free, no signup.</p>
+      <a class="btn small" href="https://github.com/bighurt23/hydrax-miner/releases/tag/v1.0-beta"
+         target="_blank" rel="noopener">⬇ Download the beta</a>
+      <div class="betamsg">NVIDIA only (AMD in progress) · 1% dev fee · Windows x64</div>
+    </div>
+    <div class="ecocard featured">
+      <div class="ecoicon">🖥</div>
+      <h3>HydraX Operator <span class="soon beta">private beta</span></h3>
+      <p>One dashboard to monitor &amp; control your whole fleet — GPUs and ASICs. Hot-swap pools and algos,
+         start/stop, live P&amp;L. The dashboard these calculators feed into.</p>
+      <form class="betaform" id="beta-form" novalidate>
+        <input type="email" id="beta-email" required placeholder="you@email.com" aria-label="Your email"/>
+        <button class="btn small" type="submit">Request beta access →</button>
+      </form>
+      <div class="betamsg" id="beta-msg">No spam — just one email when the beta opens.</div>
+    </div>
+    <div class="ecocard">
+      <div class="ecoicon">🌿</div>
+      <h3>Hydra Chain</h3>
+      <p>The endgame: a green, quantum-resistant GPU-mined L1 (Proof-of-Efficient-Work). Your hashrate,
+         a better chain.</p>
+      <span class="soon">in development</span>
+    </div>
+  </div>
+</section>
+
+<!-- CALCULATORS -->
 <main id="calc">
+  <div class="calchead">
+    <h2 class="calctitle">Free mining profit calculators</h2>
+    <p class="sub">Check any GPU or ASIC rig — profit, ROI/breakeven, and electricity cost. Live coin data, no signup.</p>
+  </div>
+  <div class="calctabs">
+    <div class="tabs" id="tabs">
+      <button class="tab active" data-t="profit">💰 Profit Calculator</button>
+      <button class="tab" data-t="roi">📈 ROI / Breakeven</button>
+      <button class="tab" data-t="power">🔌 Electricity Cost</button>
+    </div>
+  </div>
   <!-- PROFIT -->
   <section class="panel" data-p="profit">
     <h2>Mining Profit Calculator</h2>
@@ -119,44 +164,6 @@
     <div class="out" id="pw-out"></div>
   </section>
 </main>
-
-<!-- ECOSYSTEM — the moat -->
-<section class="eco" id="ecosystem">
-  <div class="ecohead">
-    <h2>Built by miners who build the miner.</h2>
-    <p>Hydrax.GG isn't a link farm — it's the front porch of a real mining stack. We write the software that
-       runs on the rigs these calculators describe.</p>
-  </div>
-  <div class="ecogrid">
-    <div class="ecocard">
-      <div class="ecoicon">⛏</div>
-      <h3>HydraX Miner <span class="soon beta">NVIDIA beta</span></h3>
-      <p>Our own high-performance GPU + CPU miner — Ethereum Classic &amp; Ravencoin on the GPU,
-         Monero on the CPU. Built to compete with the top mining software. Free, no signup.</p>
-      <a class="btn small" href="https://github.com/bighurt23/hydrax-miner/releases/tag/v1.0-beta"
-         target="_blank" rel="noopener">⬇ Download the beta</a>
-      <div class="betamsg">NVIDIA only (AMD in progress) · 1% dev fee · Windows x64</div>
-    </div>
-    <div class="ecocard featured">
-      <div class="ecoicon">🖥</div>
-      <h3>HydraX Operator <span class="soon beta">private beta</span></h3>
-      <p>One dashboard to monitor &amp; control your whole fleet — GPUs and ASICs. Hot-swap pools and algos,
-         start/stop, live P&amp;L. The dashboard these calculators feed into.</p>
-      <form class="betaform" id="beta-form" novalidate>
-        <input type="email" id="beta-email" required placeholder="you@email.com" aria-label="Your email"/>
-        <button class="btn small" type="submit">Request beta access →</button>
-      </form>
-      <div class="betamsg" id="beta-msg">No spam — just one email when the beta opens.</div>
-    </div>
-    <div class="ecocard">
-      <div class="ecoicon">🌿</div>
-      <h3>Hydra Chain</h3>
-      <p>The endgame: a green, quantum-resistant GPU-mined L1 (Proof-of-Efficient-Work). Your hashrate,
-         a better chain.</p>
-      <span class="soon">in development</span>
-    </div>
-  </div>
-</section>
 
 <!-- GEAR -->
 <section class="gear" id="gear">
