@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>How to Calculate Mining Profit (Step-by-Step, 2026)</title>
+<meta name="description" content="Learn exactly how to calculate crypto mining profit: the formula, every variable explained, a worked example, and the free calculator that does it for you."/>
+<meta name="theme-color" content="#0a0a12"/>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9A%A1%3C/text%3E%3C/svg%3E"/>
+<link rel="canonical" href="https://hydrax.gg/blog/how-to-calculate-mining-profit.html"/>
+<meta property="og:type" content="article"/>
+<meta property="og:title" content="How to Calculate Mining Profit (Step-by-Step, 2026)"/>
+<meta property="og:description" content="The exact formula, every variable explained, a worked example, and a free calculator that does the math for you."/>
+<link rel="stylesheet" href="../styles.css"/>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How do you calculate mining profit?","acceptedAnswer":{"@type":"Answer","text":"Start with daily revenue: (your hashrate / network hashrate) x (86,400 seconds / block time) x block reward x coin price. Then subtract daily electricity cost (rig power in kW x 24 x your $/kWh rate), subtract pool and dev fees, multiply by your real uptime, and finally subtract hardware depreciation. What's left is your true daily profit."}},
+{"@type":"Question","name":"What costs should I include in a mining profit calculation?","acceptedAnswer":{"@type":"Answer","text":"Electricity is the biggest ongoing cost, calculated from total wall power and your local rate. Also include pool fees (usually 0.5 to 2 percent), any dev or software fee, and hardware depreciation spread over the rig's useful life. Honest accounting also factors realistic uptime, since downtime, crashes, and re-tuning cut into revenue."}},
+{"@type":"Question","name":"How do I account for rising network difficulty?","acceptedAnswer":{"@type":"Answer","text":"As more miners join, network hashrate climbs and your fixed hashrate earns a smaller share of each block, so revenue erodes even if the coin price holds. Model this with a monthly difficulty-growth rate in an ROI/breakeven calculation rather than assuming today's earnings continue forever. Treat any payback estimate as a moving target and re-check it regularly."}}]}
+</script>
+</head>
+<body>
+<div class="bg"></div>
+<header>
+  <a class="logo" href="../"><span class="spark">&#9889;</span> Hydrax<span class="gg">.GG</span></a>
+  <nav>
+    <a href="../#calc">Calculators</a>
+    <a href="../#gear">Best Gear</a>
+    <a href="./">Blog</a>
+    <a href="../#pro" class="navpro">Pro Tracker</a>
+  </nav>
+</header>
+
+<div class="crumbs"><a href="../">Home</a> &rsaquo; <a href="./">Blog</a> &rsaquo; How to calculate mining profit</div>
+
+<article class="article">
+  <h1>How to Calculate Mining Profit (Step-by-Step, 2026)</h1>
+  <div class="meta">Guide &middot; ~7 min read &middot; by the Hydrax.GG team</div>
+  <p class="lead">Mining profit isn't a vibe &mdash; it's a formula. <strong>Once you understand the five variables that drive it, you can size up any rig or coin in about a minute.</strong></p>
+  <p>Plenty of people plug in a GPU, watch coins trickle into a wallet, and never check whether they're actually ahead of their power bill. This guide walks through the exact math, explains every variable in plain English, and gives you one fully worked example. If you'd rather skip the arithmetic entirely, the <a href="../#calc">mining profit calculator</a> does all of it with live network data &mdash; but it helps to know what's happening under the hood.</p>
+
+  <h2>The mining profit formula</h2>
+  <p>Profit is just revenue minus costs. The trick is that mining revenue depends on your <em>share</em> of the whole network, not a fixed payout. Here's the full picture:</p>
+  <table>
+    <tr><th>Step</th><th>What you compute</th></tr>
+    <tr><td>1. Gross revenue/day</td><td>(your hashrate &divide; network hashrate) &times; (86,400 &divide; block time) &times; block reward &times; coin price</td></tr>
+    <tr><td>2. &minus; Electricity/day</td><td>rig power in kW &times; 24 &times; your $/kWh rate</td></tr>
+    <tr><td>3. &minus; Fees</td><td>multiply revenue by (1 &minus; pool fee &minus; dev fee)</td></tr>
+    <tr><td>4. &times; Uptime</td><td>multiply by your realistic uptime (e.g. 0.97)</td></tr>
+    <tr><td>5. &minus; Depreciation</td><td>hardware cost &divide; expected useful life in days</td></tr>
+  </table>
+  <p>That's the whole thing. The first line is where most of the confusion lives, so let's break each variable down.</p>
+
+  <h2>Every variable, explained</h2>
+  <ul>
+    <li><strong>Your hashrate</strong> &mdash; how many hashes per second your rig produces on a given algorithm (MH/s for many GPU coins, TH/s for Bitcoin ASICs, kH/s for RandomX). This is the one number you control through hardware and tuning.</li>
+    <li><strong>Network hashrate</strong> &mdash; the combined power of every miner on that coin. Your slice of the rewards is <em>your hashrate divided by this</em>. As it rises, your slice shrinks.</li>
+    <li><strong>Block time</strong> &mdash; the average seconds between blocks. <em>86,400</em> is just the number of seconds in a day, so <em>86,400 &divide; block time</em> is how many blocks the network mines daily.</li>
+    <li><strong>Block reward</strong> &mdash; the coins paid out per block (block subsidy plus transaction fees). This drops at halvings or schedule changes.</li>
+    <li><strong>Coin price</strong> &mdash; what the coin is worth in your currency right now. This is the most volatile input by far, and it can swing your result more than anything else overnight.</li>
+    <li><strong>Power draw</strong> &mdash; total wall power for the whole rig in watts. Use the at-the-plug number, not just the GPU's rated TDP, because the CPU, board, fans, and PSU losses all count.</li>
+    <li><strong>Electricity rate</strong> &mdash; your real $/kWh, including delivery charges and tiers. This single number decides whether marginal rigs are profitable or bleeding money.</li>
+    <li><strong>Fees and uptime</strong> &mdash; pool fees run roughly 0.5&ndash;2%, software/dev fees vary, and uptime is never a perfect 100% once you account for crashes, reboots, and re-tuning.</li>
+  </ul>
+
+  <div class="cta">
+    <strong>Don't want to do this by hand? &rarr;</strong><br/>
+    <a class="btn primary" href="../#calc">Open the Mining Profit Calculator</a>
+  </div>
+
+  <h2>A fully worked example</h2>
+  <p>These are <strong>illustrative round numbers, not live data</strong> &mdash; they exist to show how the formula flows. For real figures, use the <a href="../#calc">calculator</a>, which pulls current network stats and prices.</p>
+  <p>Say a single GPU does <strong>50 MH/s</strong> on a coin with a <strong>5,000,000 MH/s network</strong>, a <strong>15-second block time</strong>, a <strong>2-coin block reward</strong>, and a <strong>$10 coin price</strong>. The rig pulls <strong>200 W</strong> at the wall and electricity is <strong>$0.12/kWh</strong>. Pool fee is <strong>1%</strong>, uptime <strong>97%</strong>.</p>
+  <table>
+    <tr><th>Line</th><th>Math</th><th>Result</th></tr>
+    <tr><td>Your network share</td><td>50 &divide; 5,000,000</td><td>0.00001</td></tr>
+    <tr><td>Blocks per day</td><td>86,400 &divide; 15</td><td>5,760</td></tr>
+    <tr><td>Coins per day</td><td>0.00001 &times; 5,760 &times; 2</td><td>0.1152</td></tr>
+    <tr><td>Gross revenue/day</td><td>0.1152 &times; $10</td><td>$1.152</td></tr>
+    <tr><td>After 1% pool fee</td><td>$1.152 &times; 0.99</td><td>$1.140</td></tr>
+    <tr><td>After 97% uptime</td><td>$1.140 &times; 0.97</td><td>$1.106</td></tr>
+    <tr><td>Electricity/day</td><td>0.2 kW &times; 24 &times; $0.12</td><td>$0.576</td></tr>
+    <tr><td><strong>Net before depreciation</strong></td><td>$1.106 &minus; $0.576</td><td><strong>$0.530/day</strong></td></tr>
+  </table>
+  <p>So this example rig nets about <strong>$0.53 a day</strong>, or roughly $16/month, before hardware wear. Notice how electricity ate over a third of revenue &mdash; at $0.30/kWh instead of $0.12, the same rig would <em>lose</em> money. Power rate is usually the make-or-break input, which is exactly why our <a href="../is-gpu-mining-profitable-2026.html">guide on whether GPU mining is still profitable</a> hammers on it.</p>
+
+  <h2>Don't forget depreciation</h2>
+  <p>The daily net above ignores the cost of the hardware itself. If that rig cost <strong>$600</strong> and you expect <strong>2 years (730 days)</strong> of useful life, depreciation is about <strong>$0.82/day</strong>. Suddenly the "profitable" rig is underwater on a full-cost basis. Whether you count depreciation depends on your goal: if the hardware is a sunk cost you already own, the daily net is what matters; if you're deciding whether to <em>buy</em>, you must include it. Shopping <a href="../#gear">used and renewed GPUs</a> is one of the most effective ways to lower this line, since you're spreading a smaller purchase price over the same lifespan.</p>
+
+  <h2>The variable that quietly erodes everything: difficulty growth</h2>
+  <p>Here's the catch the formula hides: <strong>network hashrate isn't frozen.</strong> When a coin is profitable, more miners pile in, network hashrate climbs, and your fixed 50 MH/s earns a smaller slice of each block &mdash; even if the price never moves. This is difficulty growth, and it's why a rig that pays back in "8 months" on paper often takes much longer.</p>
+  <p>To handle it honestly, don't assume today's earnings continue forever. Model a monthly difficulty-growth rate (even a modest few percent) so your share shrinks over time. The <a href="../#calc">ROI / breakeven calculator</a> includes a difficulty-growth setting precisely so your payback estimate reflects this drift instead of a flat, too-rosy line. Picking a coin with a smaller or more stable network can also blunt the effect &mdash; see our <a href="../most-profitable-coin-to-mine-2026.html">most-profitable-coin breakdown</a> for how the math shifts between coins.</p>
+
+  <h2>From one-time math to ongoing bookkeeping</h2>
+  <p>Calculating profit once tells you whether to start. Tracking it over time tells you whether to <em>keep going</em> &mdash; and it's what you'll need at tax time. Prices move, difficulty climbs, power bills arrive, and hardware ages, so a single snapshot goes stale fast. That's the gap the <a href="../#pro">Hydrax Pro Tracker</a> fills: a spreadsheet that logs income, costs, and depreciation across multiple rigs and ASICs so you always know your real P&amp;L, not just a hopeful estimate. Use the free calculator to decide, and the tracker to stay honest month over month.</p>
+
+  <h3 class="faq">Frequently asked</h3>
+  <p><strong>Does the calculator include electricity and fees automatically?</strong> Yes &mdash; enter your power draw, rate, and fee percentages and the <a href="../#calc">calculator</a> applies every step of the formula above, so you don't have to chain the arithmetic yourself.</p>
+  <p><strong>Should I compare GPUs or an ASIC for my coin?</strong> It depends on the algorithm: some coins are GPU-friendly, others are dominated by ASICs. Our <a href="../asic-vs-gpu-mining.html">ASIC vs GPU comparison</a> covers the tradeoffs before you spend a dollar.</p>
+  <p><strong>How often should I recalculate?</strong> Whenever the coin price swings hard, after a difficulty adjustment, or at least monthly. Mining economics drift constantly, so treat every result as a current reading rather than a promise.</p>
+
+  <div class="cta">
+    <strong>Know your number before you plug in.</strong><br/>
+    <a class="btn primary" href="../#calc">Open the free calculator &rarr;</a>
+  </div>
+  <p style="color:var(--dim);font-size:13px;margin-top:24px">Estimates only. Mining returns depend on volatile prices, rising difficulty, and your real costs. Not financial advice.</p>
+</article>
+</body>
+</html>
