@@ -20,8 +20,8 @@ const bl = $('buy-link'); if (bl) bl.href = LINKS.buy;
    signups straight to your inbox (no client needed). Until then, signups open a
    mailto to BETA.email so they still land in your inbox. */
 const BETA = {
-  endpoint: '',               // ← paste your Formspree endpoint here when ready
-  email: 'beta@hydrax.gg',    // ← waitlist inbox (mailto fallback) — confirm/replace this address
+  endpoint: '',                 // ← paste your Formspree endpoint here when ready
+  email: 'admin@hydrax.gg',     // ← waitlist inbox (mailto fallback)
 };
 (function wireBeta(){
   const form = $('beta-form'), msg = $('beta-msg'), inp = $('beta-email');
