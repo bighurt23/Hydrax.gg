@@ -51,18 +51,21 @@
     <div class="grid2">
       <label>Revenue mode
         <select id="pr-mode">
+          <option value="auto">Pick a coin (live data)</option>
           <option value="gross">I know my gross $/day</option>
-          <option value="coins">Coins/day × live price</option>
         </select>
       </label>
-      <label id="pr-gross-wrap">Gross revenue ($/day)
-        <input id="pr-gross" type="number" step="0.01" value="5.00"></label>
-      <label id="pr-coin-wrap" class="hidden">Coin
+      <label id="pr-coin-wrap">Coin <span class="live" id="pr-coinmeta"></span>
         <select id="pr-coin"></select></label>
-      <label id="pr-amt-wrap" class="hidden">Coins mined / day
-        <input id="pr-amt" type="number" step="0.0001" value="0.05"></label>
-      <label id="pr-price-wrap" class="hidden">Coin price ($) <span class="live" id="pr-live"></span>
-        <input id="pr-price" type="number" step="0.01" value="0"></label>
+      <label id="pr-hs-wrap">Your hashrate
+        <input id="pr-hs" type="number" step="0.01" value="100"></label>
+      <label id="pr-unit-wrap">Unit
+        <select id="pr-unit">
+          <option>H/s</option><option>kH/s</option><option selected>MH/s</option>
+          <option>GH/s</option><option>TH/s</option><option>Sol/s</option>
+        </select></label>
+      <label id="pr-gross-wrap" class="hidden">Gross revenue ($/day)
+        <input id="pr-gross" type="number" step="0.01" value="5.00"></label>
       <label>Power draw (Watts)
         <input id="pr-watts" type="number" value="1200"></label>
       <label>Your region <span class="hint">(sets avg rate)</span>

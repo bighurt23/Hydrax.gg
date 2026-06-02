@@ -46,11 +46,11 @@ async function fetchPrices(){
 }
 async function loadPrices(){
   for(let i=0;i<3;i++){                       // retry transient rate-limits/blips
-    try{ PRICES = await fetchPrices(); cachePrices(PRICES); renderTicker(); fillCoinPrice(); return; }
+    try{ PRICES = await fetchPrices(); cachePrices(PRICES); renderTicker(); return; }
     catch(e){ if(i<2) await sleep(2500); }
   }
   const c = cachedPrices();                   // all retries failed → last good prices (<6h)
-  if(c){ PRICES = c; renderTicker(true); fillCoinPrice(); }
+  if(c){ PRICES = c; renderTicker(true); }
   else { $('ticker').innerHTML = '<span class="dn">live prices loading…</span>'; }
 }
 function pdec(v){ return v < 0.01 ? 6 : (v < 1 ? 4 : 2); }
@@ -76,22 +76,42 @@ document.querySelectorAll('.tab').forEach(t=>{
 });
 
 /* ── profit calculator ─────────────────────────────────────────────────────── */
-// populate mineable coin selector
+// all-coin profit calculator — data from data/coins.json (97 GPU+ASIC coins)
+const UNIT_MULT = {'H/s':1,'kH/s':1e3,'MH/s':1e6,'GH/s':1e9,'TH/s':1e12,'Sol/s':1};
+let COINDATA = [];
 const coinSel = $('pr-coin');
-COINS.filter(c=>MINEABLE.includes(c.id)).forEach(c=>{
-  const o=document.createElement('option'); o.value=c.id; o.textContent=c.sym; coinSel.appendChild(o);
-});
-function fillCoinPrice(){
-  const id = coinSel.value; const p = PRICES[id];
-  const liveEl = $('pr-live');
-  if(p){ $('pr-price').value = p.usd; liveEl.textContent = `(live $${fmtN(p.usd,p.usd<1?4:2)})`; }
-  else { liveEl.textContent = ''; }
+
+async function loadCoins(){
+  try{
+    const d = await (await fetch('data/coins.json', {cache:'no-store'})).json();
+    COINDATA = d.coins || [];
+    coinSel.innerHTML = '';
+    const grp = (label, type)=>{
+      const list = COINDATA.map((c,i)=>[c,i]).filter(([c])=>c.type===type);
+      if(!list.length) return;
+      const og=document.createElement('optgroup'); og.label=label;
+      list.forEach(([c,i])=>{ const o=document.createElement('option'); o.value=String(i);
+        o.textContent = `${c.name} (${c.tag||c.algo}) · ${c.algo}`; og.appendChild(o); });
+      coinSel.appendChild(og);
+    };
+    grp(`GPU coins (${COINDATA.filter(c=>c.type==='gpu').length})`,'gpu');
+    grp(`ASIC coins (${COINDATA.filter(c=>c.type==='asic').length})`,'asic');
+    const def = COINDATA.findIndex(c=>['RVN','ETC','XMR','KAS'].includes(c.tag));
+    coinSel.value = String(def>=0?def:0);
+    onCoin();
+  }catch(e){ const m=$('pr-coinmeta'); if(m) m.textContent='(coin list unavailable)'; }
+}
+function selectedCoin(){ return COINDATA[+coinSel.value] || null; }
+function onCoin(){
+  const c = selectedCoin(); if(!c) return;
+  const u=$('pr-unit'); if([...u.options].some(o=>o.value===c.unit)) u.value=c.unit;  // default to algo's unit
+  $('pr-coinmeta').textContent = `live · $${fmtN(c.price, c.price<1?6:2)} · net ${fmtN(c.nethash/UNIT_MULT[c.unit],0)} ${c.unit}`;
+  calcProfit();
 }
 function toggleMode(){
-  const gross = $('pr-mode').value === 'gross';
-  $('pr-gross-wrap').classList.toggle('hidden', !gross);
-  ['pr-coin-wrap','pr-amt-wrap','pr-price-wrap'].forEach(w=>$(w).classList.toggle('hidden', gross));
-  if(!gross) fillCoinPrice();
+  const auto = $('pr-mode').value === 'auto';
+  ['pr-coin-wrap','pr-hs-wrap','pr-unit-wrap'].forEach(w=>$(w).classList.toggle('hidden', !auto));
+  $('pr-gross-wrap').classList.toggle('hidden', auto);
   calcProfit();
 }
 function calcProfit(){
@@ -99,28 +119,33 @@ function calcProfit(){
   const rate   = +$('pr-rate').value  || 0;
   const fee    = (+$('pr-fee').value  || 0)/100;
   const uptime = (+$('pr-uptime').value || 0)/100;
-  let gross;
+  let gross = 0, extra = '';
   if($('pr-mode').value === 'gross'){
     gross = +$('pr-gross').value || 0;
   } else {
-    gross = (+$('pr-amt').value || 0) * (+$('pr-price').value || 0);
+    const c = selectedCoin();
+    if(c){
+      const hs = (+$('pr-hs').value || 0) * (UNIT_MULT[$('pr-unit').value] || 1);
+      const perDay = (hs / c.nethash) * (86400 / c.blocktime) * c.reward;   // coins/day
+      gross = perDay * c.price;
+      extra = `Mining <b>${c.name}</b>: ~${fmtN(perDay,6)} ${c.tag||''}/day × $${fmtN(c.price,c.price<1?6:2)}. `;
+    }
   }
-  const power = (watts/1000) * 24 * rate;             // $/day to run
-  const revenue = gross * (1 - fee) * uptime;          // $/day after fees + downtime
-  const net = revenue - power;                         // $/day profit
+  const power = (watts/1000) * 24 * rate;
+  const revenue = gross * (1 - fee) * uptime;
+  const net = revenue - power;
   const margin = revenue > 0 ? (net/revenue)*100 : 0;
   const cls = net >= 0 ? 'good' : 'bad';
   $('pr-out').innerHTML = `
     <div class="o ${cls}"><b>${fmt(net)}</b><span>net profit / day</span></div>
     <div class="o ${cls}"><b>${fmt(net*30.4)}</b><span>net / month</span></div>
     <div class="o"><b>${fmt(power)}</b><span>power cost / day</span></div>
-    <div class="note">Gross ${fmt(gross)}/day → after ${(fee*100).toFixed(1)}% fee &amp; ${(uptime*100).toFixed(0)}% uptime = ${fmt(revenue)}/day,
-      minus ${fmt(power)} power. Profit margin <b>${margin.toFixed(0)}%</b>.
-      ${net<0?'⚠ This rig loses money at these inputs — drop your power rate or pick a more profitable coin.':''}</div>`;
+    <div class="note">${extra}Gross ${fmt(gross)}/day → after ${(fee*100).toFixed(1)}% fee &amp; ${(uptime*100).toFixed(0)}% uptime = ${fmt(revenue)}/day, minus ${fmt(power)} power. Margin <b>${margin.toFixed(0)}%</b>.
+      ${net<0?'⚠ Loses money here — lower your power rate or pick a more profitable coin.':''}</div>`;
 }
-['pr-mode','pr-gross','pr-coin','pr-amt','pr-price','pr-watts','pr-rate','pr-fee','pr-uptime']
-  .forEach(id=>{ const e=$(id); e.addEventListener('input', id==='pr-mode'?toggleMode:calcProfit); });
-coinSel.addEventListener('change', ()=>{ fillCoinPrice(); calcProfit(); });
+['pr-mode','pr-gross','pr-hs','pr-unit','pr-watts','pr-rate','pr-fee','pr-uptime']
+  .forEach(id=>{ const e=$(id); if(e) e.addEventListener('input', id==='pr-mode'?toggleMode:calcProfit); });
+coinSel.addEventListener('change', onCoin);
 
 /* ── ROI / breakeven (with monthly difficulty growth) ──────────────────────── */
 function calcRoi(){
@@ -218,5 +243,6 @@ wireLoc('pw-loc','pw-rate',calcPower);
 
 /* ── init ──────────────────────────────────────────────────────────────────── */
 toggleMode(); calcProfit(); calcRoi(); calcPower();
+loadCoins();                       // all-coin calculator data (data/coins.json)
 loadPrices();
 setInterval(loadPrices, 120000);  // refresh prices every 2 min
