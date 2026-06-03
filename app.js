@@ -11,7 +11,7 @@ document.getElementById('yr').textContent = new Date().getFullYear();
 
 /* ── affiliate / product links (swap these for your real URLs) ──────────────── */
 const LINKS = {
-  buy:  'https://wyattjr6.gumroad.com/l/gyanqh',  // Pro Tracker — Gumroad checkout
+  buy:  'https://hydrax.gumroad.com/l/gyanqh',  // Pro Tracker — Gumroad checkout
 };
 const bl = $('buy-link'); if (bl) bl.href = LINKS.buy;
 
