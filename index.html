@@ -3,8 +3,11 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>HydraX — Crypto Mining Software &amp; Farm Operator Dashboard</title>
-<meta name="description" content="HydraX is free GPU/CPU crypto mining software and a farm Operator dashboard — mine Ravencoin, Neoxa, Ethereum Classic and Monero, then monitor and control your whole rig farm from your phone. Plus free mining profit calculators."/>
+<title>HydraX — Free Crypto Mining Software | GPU &amp; CPU Miner</title>
+<meta name="description" content="HydraX is free crypto mining software for NVIDIA GPUs and CPUs — mine Ravencoin (KawPow), Neoxa, Neurai, Ethereum Classic (Etchash) and Monero (RandomX), with dual GPU+CPU mining on one app. Plus a farm Operator dashboard and free mining profit calculators."/>
+<meta name="keywords" content="crypto mining software, mining software, GPU miner, CPU miner, free crypto miner, NVIDIA mining software, Ravencoin miner, RVN miner, KawPow miner, Neoxa miner, NEOX miner, Neurai miner, XNA miner, Ethereum Classic miner, ETC miner, Etchash miner, Monero miner, XMR miner, RandomX miner, dual mining, GPU CPU mining, mining profit calculator, crypto mining calculator, mining farm software, mining dashboard, how to mine crypto, best mining software 2026, kHeavyHash miner, Kaspa miner"/>
+<meta name="robots" content="index, follow, max-image-preview:large"/>
+<link rel="canonical" href="https://hydrax.gg/"/>
 <meta name="theme-color" content="#0a0a12"/>
 <link rel="icon" href="/favicon.png"/>
 <!-- Open Graph / social (what mobile/iMessage/Twitter show in the link preview) -->
@@ -22,6 +25,32 @@
 <meta name="twitter:description" content="Free GPU/CPU crypto miner + control your whole mining farm from your phone."/>
 <meta name="twitter:image" content="https://hydrax.gg/og.png?v=2"/>
 <link rel="stylesheet" href="styles.css?v=6"/>
+<!-- Structured data: helps Google index HydraX as mining software + rich results -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://hydrax.gg/#website",
+      "url": "https://hydrax.gg/",
+      "name": "HydraX",
+      "description": "Free crypto mining software, GPU & CPU miner, and mining profit calculators."
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "HydraX Miner",
+      "operatingSystem": "Windows 10/11 (64-bit)",
+      "applicationCategory": "UtilitiesApplication",
+      "url": "https://hydrax.gg/",
+      "downloadUrl": "https://github.com/bighurt23/hydrax-miner/releases",
+      "softwareVersion": "2.1",
+      "description": "Free NVIDIA GPU & CPU crypto mining software. Mine Ravencoin (KawPow), Neoxa, Neurai, Ethereum Classic (Etchash) and Monero (RandomX), with dual GPU+CPU mining on one app.",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <div class="bg"></div>
@@ -313,6 +342,33 @@
   <p>Network difficulty tends to climb, which slowly shrinks your share of block rewards. The ROI calculator
      lets you model that so your payback estimate isn't fantasy.</p>
 </section>
+
+<!-- FAQ (SEO content + FAQ rich snippets) -->
+<section class="learn" id="faq">
+  <h2>Crypto mining software FAQ</h2>
+  <h3>What is HydraX?</h3>
+  <p>HydraX is free crypto mining software for NVIDIA GPUs and CPUs. It mines several coins on Windows, supports dual GPU + CPU mining on one app, and comes with a farm Operator dashboard and free mining profit calculators.</p>
+  <h3>What coins can I mine with HydraX?</h3>
+  <p>On the GPU: Ravencoin (RVN) and other KawPow coins — Neoxa (NEOX) and Neurai (XNA) — plus Ethereum Classic (ETC, Etchash). On the CPU: Monero (XMR, RandomX). One miner, multiple algorithms.</p>
+  <h3>Can I mine two coins at the same time?</h3>
+  <p>Yes. HydraX does dual mining on a single app — a GPU coin (Ethereum Classic or a KawPow coin) and Monero on your CPU at the same time — so you earn more from hardware you already own.</p>
+  <h3>Is HydraX free?</h3>
+  <p>Yes, it's completely free to download and use. It includes a small 1% dev fee (about 36 seconds per hour) that keeps the mining software free and maintained.</p>
+  <h3>What hardware do I need to mine?</h3>
+  <p>An NVIDIA GPU (RTX 30, 40, or 50 series with roughly 6 GB+ VRAM) on 64-bit Windows. Monero/RandomX runs on your CPU. AMD GPU support is in progress.</p>
+  <h3>How do I start mining crypto with HydraX?</h3>
+  <p>Download HydraX, open the .bat file for the coin you want, paste in your wallet address, and run it — no config files needed. Point it at a reliable pool such as 2Miners (see the Pools section above).</p>
+</section>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What is HydraX?","acceptedAnswer":{"@type":"Answer","text":"HydraX is free crypto mining software for NVIDIA GPUs and CPUs. It mines several coins on Windows, supports dual GPU + CPU mining on one app, and comes with a farm Operator dashboard and free mining profit calculators."}},
+{"@type":"Question","name":"What coins can I mine with HydraX?","acceptedAnswer":{"@type":"Answer","text":"On the GPU: Ravencoin (RVN) and other KawPow coins — Neoxa (NEOX) and Neurai (XNA) — plus Ethereum Classic (ETC, Etchash). On the CPU: Monero (XMR, RandomX)."}},
+{"@type":"Question","name":"Can I mine two coins at the same time?","acceptedAnswer":{"@type":"Answer","text":"Yes. HydraX does dual mining on a single app — a GPU coin (Ethereum Classic or a KawPow coin) and Monero on your CPU at the same time — so you earn more from hardware you already own."}},
+{"@type":"Question","name":"Is HydraX free?","acceptedAnswer":{"@type":"Answer","text":"Yes, it's completely free to download and use. It includes a small 1% dev fee (about 36 seconds per hour) that keeps the mining software free and maintained."}},
+{"@type":"Question","name":"What hardware do I need to mine?","acceptedAnswer":{"@type":"Answer","text":"An NVIDIA GPU (RTX 30, 40, or 50 series with roughly 6 GB+ VRAM) on 64-bit Windows. Monero/RandomX runs on your CPU. AMD GPU support is in progress."}},
+{"@type":"Question","name":"How do I start mining crypto with HydraX?","acceptedAnswer":{"@type":"Answer","text":"Download HydraX, open the .bat file for the coin you want, paste in your wallet address, and run it — no config files needed. Point it at a reliable pool such as 2Miners."}}
+]}
+</script>
 
 <footer>
   <div class="logo small"><img src="/favicon.png" class="spark" alt="HydraX" width="22" height="22"/> Hydrax<span class="gg">.GG</span></div>
