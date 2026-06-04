@@ -115,6 +115,9 @@ section.eco,section.gear,section.pro,section.learn{max-width:var(--maxw);margin:
 .tag{font-size:11px;color:var(--pur2);border:1px solid var(--line);border-radius:20px;padding:3px 10px;
   text-transform:uppercase;letter-spacing:.6px;display:inline-block;margin-bottom:10px}
 .gecard .price,.geard .price{color:var(--cyan);font-weight:700;font-size:14px}
+.connect{display:block;background:#0c0a14;border:1px solid var(--line);border-radius:8px;
+  padding:9px 11px;margin:0 0 12px;font:12px/1.5 ui-monospace,Consolas,monospace;
+  color:var(--cyan);overflow-x:auto;white-space:nowrap}
 
 /* pro */
 .pro .proinner{background:linear-gradient(135deg,#1a1330,#120e1e);border:1px solid var(--pink);
