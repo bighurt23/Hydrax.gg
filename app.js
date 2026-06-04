@@ -131,7 +131,7 @@ async function loadCoins(){
     };
     grp(`GPU coins (${COINDATA.filter(c=>c.type==='gpu').length})`,'gpu');
     grp(`ASIC coins (${COINDATA.filter(c=>c.type==='asic').length})`,'asic');
-    const def = COINDATA.findIndex(c=>['RVN','ETC','XMR','KAS'].includes(c.tag));
+    const def = COINDATA.findIndex(c=>['RVN','ETC','XMR','NEOX'].includes(c.tag));
     coinSel.value = String(def>=0?def:0);
     onCoin();
   }catch(e){ const m=$('pr-coinmeta'); if(m) m.textContent='(coin list unavailable)'; }
