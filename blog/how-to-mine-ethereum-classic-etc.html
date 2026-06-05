@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>How to Mine Ethereum Classic (ETC) in 2026 (Free GPU Miner)</title>
+<meta name="description" content="Step-by-step guide to mining Ethereum Classic (ETC) on an NVIDIA GPU in 2026 with the Etchash algorithm — VRAM and DAG requirements, pools, config, memory-clock tuning, and how to dual-mine Monero on your CPU at the same time."/>
+<meta name="keywords" content="how to mine ethereum classic, how to mine etc, etchash miner, etc mining, ethereum classic miner, nvidia gpu miner, free crypto mining software, dual mine monero, etc pool"/>
+<meta name="theme-color" content="#0a0a12"/>
+<link rel="icon" href="/favicon.png"/>
+<link rel="canonical" href="https://hydrax.gg/blog/how-to-mine-ethereum-classic-etc.html"/>
+<meta property="og:type" content="article"/>
+<meta property="og:title" content="How to Mine Ethereum Classic (ETC) in 2026 (Free GPU Miner)"/>
+<meta property="og:description" content="Mine Ethereum Classic on an NVIDIA GPU with the Etchash algorithm — VRAM/DAG needs, pools, config, memory-clock tuning, and dual-mining Monero on your CPU."/>
+<link rel="stylesheet" href="../styles.css?v=5"/>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What GPU do I need to mine Ethereum Classic?","acceptedAnswer":{"@type":"Answer","text":"Ethereum Classic uses Etchash, which loads a multi-gigabyte DAG file into GPU memory, so the main requirement is enough VRAM to hold it. Modern NVIDIA cards with roughly 4 GB or more of memory work, and RTX 30, 40 and 50 series cards all mine ETC well. Because Etchash is memory-bandwidth bound, a card's memory speed matters more for hashrate than its core clock."}},
+{"@type":"Question","name":"Is Ethereum Classic mining profitable in 2026?","acceptedAnswer":{"@type":"Answer","text":"It depends on your electricity rate, your GPU's hashrate, and ETC's price and difficulty on the day. Etchash stays GPU-mineable, so home miners can still participate, but profitability is decided mostly by what you pay per kilowatt-hour. The only reliable way to know is to run your exact hashrate and power cost through a profit calculator before committing, and to track real earnings over time."}},
+{"@type":"Question","name":"Can I mine Ethereum Classic and Monero at the same time?","acceptedAnswer":{"@type":"Answer","text":"Yes. ETC is mined on your GPU with Etchash while Monero (XMR) is mined on your CPU with RandomX, so the two use different hardware and don't compete. A dual-mining miner like HydraX runs ETC and Monero together from one program, so a single rig earns on two coins at once from the same power bill."}}]}
+</script>
+</head>
+<body>
+<div class="bg"></div>
+<header>
+  <a class="logo" href="../"><img src="/favicon.png" class="spark" alt="HydraX" width="22" height="22"/> Hydrax<span class="gg">.GG</span></a>
+  <nav>
+    <a href="../#calc">Calculators</a>
+    <a href="../#gear">Best Gear</a>
+    <a href="./">Blog</a>
+    <a href="../#pro" class="navpro">Pro Tracker</a>
+  </nav>
+</header>
+
+<div class="crumbs"><a href="../">Home</a> &rsaquo; <a href="./">Blog</a> &rsaquo; How to mine Ethereum Classic</div>
+
+<article class="article">
+  <h1>How to Mine Ethereum Classic (ETC) in 2026 (Free GPU Miner)</h1>
+  <div class="meta">Guide &middot; ~9 min read &middot; by the Hydrax.GG team</div>
+  <p class="lead">Ethereum Classic is one of the most established GPU-mined coins, and it's still a natural home for an NVIDIA rig. <strong>It runs on Etchash &mdash; a memory-bandwidth algorithm &mdash; so the trick to mining it well is your memory clock, not your core clock.</strong></p>
+  <p>We build the <a href="../#ecosystem">HydraX miner</a>, so this is the hands-on version: what Etchash needs from your card, the exact steps to point a free NVIDIA miner at ETC, how to tune for it, and how to mine <a href="is-monero-mining-profitable-2026.html">Monero on your CPU</a> at the same time so one rig earns on two coins at once.</p>
+
+  <h2>What is Etchash, and why it suits a GPU</h2>
+  <p>Ethereum Classic mines with <strong>Etchash</strong>, a variant of the old Ethash algorithm. Like Ethash, it's <em>memory-hard</em>: each share requires reading from a large dataset called the <strong>DAG</strong>, which lives in your GPU's memory. That design is deliberate &mdash; it keeps mining tied to memory bandwidth, which consumer GPUs have in abundance, and makes purpose-built ASICs far less dominant than on simpler algorithms.</p>
+  <p>The practical upshot for you: Ethereum Classic is genuinely GPU-friendly, a modern graphics card earns a fair share, and the single biggest lever on your hashrate is <strong>memory speed</strong>. Hold that thought &mdash; it changes how you tune the card later.</p>
+
+  <h2>What you need before you start</h2>
+  <ol>
+    <li><strong>An NVIDIA GPU with enough VRAM for the DAG.</strong> The ETC dataset is a few gigabytes and grows slowly over time, so a card with roughly 4 GB or more of memory works; RTX 30, 40 and 50 series cards all mine ETC well. If a card runs out of VRAM for the DAG, it can no longer mine the coin &mdash; so more memory also means more headroom for the future.</li>
+    <li><strong>An ETC wallet address</strong> to receive payouts. Ethereum Classic uses an Ethereum-style address (it starts with <code>0x</code>). Make sure it's actually an ETC address, not one for a different chain.</li>
+    <li><strong>A mining pool</strong> for ETC (more below).</li>
+    <li><strong>A miner.</strong> We'll use the free <a href="../#ecosystem">HydraX miner</a> because it mines Etchash and can dual-mine Monero from the same program &mdash; but the steps generalize to any Etchash miner.</li>
+  </ol>
+
+  <div class="cta">
+    <strong>See what your GPU would earn on ETC first &rarr;</strong><br/>
+    <a class="btn primary" href="../#calc">Open the Mining Profit Calculator</a>
+  </div>
+
+  <h2>Step 1: Pick a pool</h2>
+  <p>Unless you run a large farm, you'll <a href="how-to-start-mining-crypto.html">mine ETC on a pool</a> rather than solo &mdash; pooled payouts are small but steady instead of rare and random. An ETC pool gives you a stratum address and port to point your miner at, and you attach your <code>0x</code> wallet address as the username. We list ready-to-paste connection details for ETC and the other coins we support on the <a href="../#pools">recommended pools page</a>, so you can copy a working config instead of hunting one down.</p>
+
+  <h2>Step 2: Download and unzip the miner</h2>
+  <p>Grab the latest free build, unzip it somewhere you can find, and you're ready to configure. The HydraX miner is a single Windows package &mdash; no installer, no toolkit to set up.</p>
+  <div class="cta">
+    <strong>Free NVIDIA GPU + CPU miner, open beta &rarr;</strong><br/>
+    <a class="btn primary" href="https://github.com/bighurt23/hydrax-miner/releases" rel="noopener">Download the HydraX miner</a>
+  </div>
+
+  <h2>Step 3: Edit the config with ETC, your pool and wallet</h2>
+  <p>Mining setup comes down to three facts: <strong>which coin, which pool, which wallet</strong>. Set the coin to ETC (Etchash), paste the pool's address and port, and paste <em>your</em> <code>0x</code> ETC wallet address. Add a worker name if you run more than one rig so you can tell them apart on the pool dashboard. Save, and you're ready to run.</p>
+
+  <h2>Step 4 (optional): Turn on Monero to dual-mine</h2>
+  <p>This is the part most people leave on the table. Your GPU mines ETC; your CPU is free to mine <a href="is-monero-mining-profitable-2026.html">Monero (XMR)</a> with RandomX at the same time. Because the two use completely different hardware, you earn on a second coin for almost no loss on the first &mdash; ETC and Monero run together out of one miner. Set your XMR pool and wallet alongside ETC, pick the dual mode, and one rig now earns on two coins from a single power bill.</p>
+
+  <h2>Step 5: Start it and watch for the DAG and accepted shares</h2>
+  <p>Launch the miner and watch the console. The first thing it does for ETC is <strong>build the DAG</strong> &mdash; it generates that multi-gigabyte dataset in GPU memory, which takes a short while the first time. Once that's done it connects to the pool and starts reporting a hashrate in MH/s. The number that matters is <strong>accepted shares</strong>: each one is proof your rig contributed valid work and is earning. If you turned on dual mining, you'll see Monero's shares scrolling alongside ETC's. Once you cross the pool's minimum payout, the balance lands in your wallet.</p>
+
+  <h2>Step 6: Tune for Etchash (memory first)</h2>
+  <p>Here's where ETC differs from a coin like <a href="how-to-mine-ravencoin-neoxa-neurai-frencoin.html">Ravencoin</a>. KawPow leans on the core clock; <strong>Etchash is memory-bandwidth bound</strong>, so your memory clock is the dial that moves hashrate most. The high-value levers, in order:</p>
+  <ul>
+    <li><strong>Memory clock</strong> &mdash; the big one for Etchash. A stable memory overclock raises ETC hashrate directly. Push it gradually and back off the moment you see invalid shares or instability, because a fast-but-erroring memory clock loses you more in rejects than it gains.</li>
+    <li><strong>Power limit</strong> &mdash; cap it. Etchash doesn't need a high core clock, so lowering power usually trims heat and your electricity bill with little hashrate loss.</li>
+    <li><strong>Core clock</strong> &mdash; can often be kept modest or slightly reduced. Chasing core speed on a memory-bound algorithm mostly just wastes watts and adds heat.</li>
+    <li><strong>Temperatures</strong> &mdash; watch <em>memory junction temperature</em> especially, since you're pushing the memory. Keep airflow strong; sustained heat shortens hardware life.</li>
+  </ul>
+  <p>Change one setting at a time, let it run, and confirm shares are still accepted before the next tweak. The goal is <strong>hashrate per watt</strong>, not raw hashrate &mdash; because watts are your power bill. A rig stable at a slightly lower clock beats one that crashes every few hours and loses uptime.</p>
+
+  <div class="cta">
+    <strong>Not sure ETC is worth it at your power rate? Check first &rarr;</strong><br/>
+    <a class="btn primary" href="../#calc">Open the free calculator</a>
+  </div>
+
+  <h2>Step 7: Track it like a business</h2>
+  <p>ETC's price and difficulty move constantly, so a coin that's green today can flip red after a price drop or a difficulty jump. Log what each rig earns, what you pay in electricity, and your real net over time &mdash; that's the difference between mining on hope and mining on numbers. The <a href="../#pro">Hydrax Pro Tracker</a> does exactly this: income, costs and depreciation across every rig and coin, so you always know your true P&amp;L.</p>
+
+  <h3 class="faq">Frequently asked</h3>
+  <p><strong>Why does my miner spend time "building the DAG" before it mines?</strong> Etchash needs a large dataset in GPU memory to work. The miner generates it once at startup (and regenerates it occasionally as the network advances). It's normal &mdash; just wait for it to finish and the hashrate to appear.</p>
+  <p><strong>My memory overclock raised hashrate but now I get rejected shares. What gives?</strong> You've pushed memory past stability. Invalid or rejected shares mean wasted work, so back the memory clock down until shares are clean again. Stable-and-slightly-slower beats fast-and-erroring every time.</p>
+  <p><strong>Is ETC better than mining Ravencoin or Neoxa?</strong> It depends on price and difficulty for your exact card on the day. Compare them in the <a href="../#calc">calculator</a>, and remember you can switch &mdash; the same miner does both. See our <a href="how-to-mine-ravencoin-neoxa-neurai-frencoin.html">KawPow coins guide</a> for the GPU alternatives.</p>
+  <p><strong>Does dual-mining Monero hurt my ETC hashrate?</strong> Almost not at all, because Monero runs on the CPU and ETC runs on the GPU. A well-built dual miner reserves just enough CPU to keep the GPU fed, so you gain a second income stream for a negligible cost.</p>
+
+  <div class="cta">
+    <strong>Mine Ethereum Classic free &mdash; plus Monero on the side.</strong><br/>
+    <a class="btn primary" href="https://github.com/bighurt23/hydrax-miner/releases" rel="noopener">Download the HydraX miner &rarr;</a>
+  </div>
+  <p style="color:var(--dim);font-size:13px;margin-top:24px">Estimates only. Mining returns depend on volatile prices, rising difficulty, and your real costs. Not financial advice.</p>
+</article>
+<!-- Cloudflare Web Analytics --><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "1c75aea993774eccbd8687fa25b2046f"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
