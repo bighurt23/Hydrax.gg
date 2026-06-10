@@ -4,8 +4,8 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>HydraX — Free Crypto Mining Software | GPU &amp; CPU Miner</title>
-<meta name="description" content="HydraX is free crypto mining software for NVIDIA GPUs and CPUs — mine Ravencoin (KawPow), Neoxa, Neurai, Ethereum Classic (Etchash) and Monero (RandomX), with dual GPU+CPU mining on one app. Plus a farm Operator dashboard and free mining profit calculators."/>
-<meta name="keywords" content="crypto mining software, mining software, GPU miner, CPU miner, free crypto miner, NVIDIA mining software, Ravencoin miner, RVN miner, KawPow miner, Neoxa miner, NEOX miner, Neurai miner, XNA miner, Ethereum Classic miner, ETC miner, Etchash miner, Monero miner, XMR miner, RandomX miner, dual mining, GPU CPU mining, mining profit calculator, crypto mining calculator, mining farm software, mining dashboard, how to mine crypto, best mining software 2026"/>
+<meta name="description" content="HydraX is free crypto mining software for NVIDIA GPUs and CPUs — mine Ravencoin (KawPow), Neoxa, Neurai, Ethereum Classic (Etchash) and Monero (RandomX), with dual GPU+CPU mining on one app. Pearl (PRL / pearlhash) and Xelis (XEL / xelishash) mining support coming soon. Plus a farm Operator dashboard and free mining profit calculators."/>
+<meta name="keywords" content="crypto mining software, mining software, GPU miner, CPU miner, free crypto miner, NVIDIA mining software, Ravencoin miner, RVN miner, KawPow miner, Neoxa miner, NEOX miner, Neurai miner, XNA miner, Ethereum Classic miner, ETC miner, Etchash miner, Monero miner, XMR miner, RandomX miner, dual mining, GPU CPU mining, mining profit calculator, crypto mining calculator, mining farm software, mining dashboard, how to mine crypto, best mining software 2026, Pearl miner, PRL miner, pearlhash miner, Pearl mining, how to mine Pearl, PRL mining, mine Pearl PRL, Xelis miner, XEL miner, xelishash miner, Xelis mining, how to mine Xelis, XEL mining, mine Xelis XEL, proof of useful work mining, GPU AI compute mining"/>
 <meta name="robots" content="index, follow, max-image-preview:large"/>
 <link rel="canonical" href="https://hydrax.gg/"/>
 <meta name="theme-color" content="#0a0a12"/>
@@ -24,7 +24,7 @@
 <meta name="twitter:title" content="HydraX — Mining Software &amp; Farm Operator"/>
 <meta name="twitter:description" content="Free GPU/CPU crypto miner + control your whole mining farm from your phone."/>
 <meta name="twitter:image" content="https://hydrax.gg/og.png?v=2"/>
-<link rel="stylesheet" href="styles.css?v=6"/>
+<link rel="stylesheet" href="styles.css?v=7"/>
 <!-- Structured data: helps Google index HydraX as mining software + rich results -->
 <script type="application/ld+json">
 {
@@ -45,7 +45,8 @@
       "url": "https://hydrax.gg/",
       "downloadUrl": "https://github.com/bighurt23/hydrax-miner/releases",
       "softwareVersion": "2.1.2",
-      "description": "Free NVIDIA GPU & CPU crypto mining software. Mine Ravencoin (KawPow), Neoxa, Neurai, Ethereum Classic (Etchash) and Monero (RandomX), with dual GPU+CPU mining on one app.",
+      "description": "Free NVIDIA GPU & CPU crypto mining software. Mine Ravencoin (KawPow), Neoxa, Neurai, Ethereum Classic (Etchash) and Monero (RandomX), with dual GPU+CPU mining on one app. Pearl (PRL/pearlhash) and Xelis (XEL/xelishash) mining support coming soon.",
+      "featureList": "Ravencoin (KawPow), Neoxa, Neurai, Frencoin, Ethereum Classic (Etchash), Monero (RandomX), dual GPU+CPU mining; Pearl (pearlhash/PRL) and Xelis (XEL/xelishashv3) coming soon",
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
     }
   ]
@@ -67,7 +68,6 @@
     <a href="blog/">Blog</a>
     <a href="#ecosystem">HydraX Miner</a>
     <a href="#pools">Pools</a>
-    <a href="#pro" class="navpro">Pro Tracker</a>
   </nav>
   <div class="ticker" id="ticker">loading live prices…</div>
 </header>
@@ -78,7 +78,6 @@
      pro-grade calculators. Built by miners who actually write the software that runs on the rigs.</p>
   <div class="herobtns">
     <a class="btn primary" href="https://github.com/bighurt23/hydrax-miner/releases" target="_blank" rel="noopener">⬇ Download the miner beta</a>
-    <a class="btn ghost pro" href="#pro">💎 Pro Tracker — $39</a>
     <a class="btn ghost" href="#calc">Free calculators →</a>
   </div>
 </section>
@@ -305,29 +304,6 @@
   <p class="sub" style="margin-top:16px">2Miners runs pools for many more coins — ETHW, ERG, ZEC, BEAM, and more. See the full lineup at <a href="https://2miners.com" target="_blank" rel="noopener">2miners.com</a>.</p>
 </section>
 
-<!-- PRO -->
-<section class="pro" id="pro">
-  <div class="proinner">
-    <div>
-      <span class="tag">Premium</span>
-      <h2>Hydrax Pro Tracker</h2>
-      <p>A full mining operation P&amp;L in one spreadsheet: track every rig and ASIC, power cost, pool fees,
-         depreciation, breakeven dates, and a tax-basis tab. Built for miners who run it like a business.</p>
-      <ul>
-        <li>Per-rig &amp; per-ASIC tracking</li>
-        <li>Daily / monthly / yearly profit roll-ups</li>
-        <li>Breakeven &amp; ROI dashboard</li>
-        <li>Tax-basis &amp; depreciation tab</li>
-      </ul>
-    </div>
-    <div class="prebuy">
-      <div class="bigprice">$39</div>
-      <a class="btn primary" href="#" id="buy-link">Get the Pro Tracker</a>
-      <div class="fineprint">One-time purchase · lifetime updates</div>
-    </div>
-  </div>
-</section>
-
 <!-- SEO content -->
 <section class="learn">
   <h2>How to read your mining numbers</h2>
@@ -358,6 +334,10 @@
   <p>An NVIDIA GPU (RTX 30, 40, or 50 series with roughly 6 GB+ VRAM) on 64-bit Windows. Monero/RandomX runs on your CPU. AMD GPU support is in progress.</p>
   <h3>How do I start mining crypto with HydraX?</h3>
   <p>Download HydraX, open the .bat file for the coin you want, paste in your wallet address, and run it — no config files needed. Point it at a reliable pool such as 2Miners (see the Pools section above).</p>
+  <h3>Will HydraX mine Pearl (PRL)?</h3>
+  <p>Yes — Pearl (PRL) mining on the pearlhash algorithm is in active development and coming soon to HydraX. Pearl is a proof-of-useful-work, AI-compute coin mined on NVIDIA GPUs; our kernel is already hitting SRBMiner-class hashrate on an RTX 5070 Ti, and it will ship at the same flat 1% dev fee as every other coin — no "flagship tax."</p>
+  <h3>Will HydraX mine Xelis (XEL)?</h3>
+  <p>Yes — Xelis (XEL) mining on the xelishashv3 algorithm is coming soon to HydraX. Xelis is a CPU-mined, memory-hard coin (a fast alternative to Monero/RandomX), and it will run on the same dual GPU+CPU setup at a 1% dev fee.</p>
 </section>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
@@ -366,7 +346,9 @@
 {"@type":"Question","name":"Can I mine two coins at the same time?","acceptedAnswer":{"@type":"Answer","text":"Yes. HydraX does dual mining on a single app — a GPU coin (Ethereum Classic or a KawPow coin) and Monero on your CPU at the same time — so you earn more from hardware you already own."}},
 {"@type":"Question","name":"Is HydraX free?","acceptedAnswer":{"@type":"Answer","text":"Yes, it's completely free to download and use. It includes a small 1% dev fee (about 36 seconds per hour) that keeps the mining software free and maintained."}},
 {"@type":"Question","name":"What hardware do I need to mine?","acceptedAnswer":{"@type":"Answer","text":"An NVIDIA GPU (RTX 30, 40, or 50 series with roughly 6 GB+ VRAM) on 64-bit Windows. Monero/RandomX runs on your CPU. AMD GPU support is in progress."}},
-{"@type":"Question","name":"How do I start mining crypto with HydraX?","acceptedAnswer":{"@type":"Answer","text":"Download HydraX, open the .bat file for the coin you want, paste in your wallet address, and run it — no config files needed. Point it at a reliable pool such as 2Miners."}}
+{"@type":"Question","name":"How do I start mining crypto with HydraX?","acceptedAnswer":{"@type":"Answer","text":"Download HydraX, open the .bat file for the coin you want, paste in your wallet address, and run it — no config files needed. Point it at a reliable pool such as 2Miners."}},
+{"@type":"Question","name":"Will HydraX mine Pearl (PRL)?","acceptedAnswer":{"@type":"Answer","text":"Yes — Pearl (PRL) mining on the pearlhash algorithm is in active development and coming soon to HydraX. Pearl is a proof-of-useful-work, AI-compute coin mined on NVIDIA GPUs, and it will ship at the same flat 1% dev fee as every other coin."}},
+{"@type":"Question","name":"Will HydraX mine Xelis (XEL)?","acceptedAnswer":{"@type":"Answer","text":"Yes — Xelis (XEL) mining on the xelishashv3 algorithm is coming soon to HydraX. Xelis is a CPU-mined, memory-hard coin similar to Monero/RandomX, and it will run at a 1% dev fee."}}
 ]}
 </script>
 

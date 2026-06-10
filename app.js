@@ -9,12 +9,6 @@ const fmtN = (n,d=2) => (isFinite(n)?n:0).toLocaleString('en-US',{maximumFractio
 
 document.getElementById('yr').textContent = new Date().getFullYear();
 
-/* ── affiliate / product links (swap these for your real URLs) ──────────────── */
-const LINKS = {
-  buy:  'https://hydrax.gumroad.com/l/gyanqh',  // Pro Tracker — Gumroad checkout
-};
-const bl = $('buy-link'); if (bl) bl.href = LINKS.buy;
-
 /* ── Operator private-beta waitlist ──────────────────────────────────────────────
    Set BETA.endpoint to a Formspree URL (https://formspree.io/f/xxxx) to capture
    signups straight to your inbox (no client needed). Until then, signups open a
