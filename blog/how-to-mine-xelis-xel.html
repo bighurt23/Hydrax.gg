@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>How to Mine Xelis (XEL): CPU Mining Guide (2026)</title>
+<meta name="description" content="CPU mining guide for Xelis (XEL) in 2026: how xelishashv3 works, best CPUs, pools, miner setup, large-pages tuning, and an honest look at profitability."/>
+<meta name="keywords" content="how to mine xelis, xelis mining, xel miner, xelishashv3, cpu mining 2026, cpu mineable coins, xelis pool, mine xelis windows, srbminer xelis"/>
+<meta name="theme-color" content="#0a0a12"/>
+<link rel="icon" href="/favicon.png"/>
+<link rel="canonical" href="https://hydrax.gg/blog/how-to-mine-xelis-xel.html"/>
+<meta property="og:type" content="article"/>
+<meta property="og:title" content="How to Mine Xelis (XEL): CPU Mining Guide (2026)"/>
+<meta property="og:description" content="Mine Xelis on your CPU with xelishashv3 — best hardware, pools, miner setup, large-pages tuning, and blunt profitability math before you commit."/>
+<link rel="stylesheet" href="../styles.css?v=5"/>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What hashrate does a CPU get mining Xelis?","acceptedAnswer":{"@type":"Answer","text":"On xelishashv3, which went live in December 2025, a top modern desktop CPU lands in roughly the 12 kH/s class. Be careful comparing numbers online: the 18-19 kH/s figures still circulating come from the previous v2 algorithm and are not comparable to v3. Chips with large L3 caches, like AMD's X3D parts with 96 MB of L3, do especially well because the 544 KB per-hash scratchpad lives comfortably in cache."}},
+{"@type":"Question","name":"Can I mine Xelis with a GPU or an ASIC?","acceptedAnswer":{"@type":"Answer","text":"Xelis is deliberately CPU-favored. xelishashv3 is memory-hard, combining BLAKE3, ChaCha8 and AES over a 544 KB per-hash scratchpad, which suits a CPU's cache hierarchy and resists the parallelism that makes GPUs and ASICs dominant on other algorithms. Your GPU is better spent on a GPU coin like Ethereum Classic or Ravencoin while the CPU mines XEL alongside it."}},
+{"@type":"Question","name":"Is Xelis mining profitable in 2026?","acceptedAnswer":{"@type":"Answer","text":"Bluntly: not as a primary earner. XEL fell from around $1.00 at the v3 launch to roughly $0.40 by mid-2026, and at that price a high-end desktop CPU grosses well under $1 per day before electricity. It makes sense as diversification, as a speculative accumulation play, or as nearly-free extra revenue on a CPU that would otherwise sit idle next to a GPU rig. Run your own numbers in a profit calculator before committing."}},
+{"@type":"Question","name":"Does SMT or Hyper-Threading help Xelis mining?","acceptedAnswer":{"@type":"Answer","text":"Yes. xelishashv3 responds well to SMT, so if the machine is dedicated to XEL, run the miner on all logical cores. If you are dual-mining alongside a GPU coin, leave about two cores free so the GPU's host thread stays fed; starving it can cost far more GPU hashrate than the extra CPU threads earn."}}]}
+</script>
+</head>
+<body>
+<div class="bg"></div>
+<header>
+  <a class="logo" href="../"><img src="/favicon.png" class="spark" alt="HydraX" width="22" height="22"/> Hydrax<span class="gg">.GG</span></a>
+  <nav>
+    <a href="../#calc">Calculators</a>
+    <a href="../#gear">Best Gear</a>
+    <a href="./">Blog</a>
+    <a href="../#ecosystem">HydraX Miner</a>
+    <a href="../#pools">Pools</a>
+  </nav>
+</header>
+
+<div class="crumbs"><a href="../">Home</a> &rsaquo; <a href="./">Blog</a> &rsaquo; How to mine Xelis</div>
+
+<article class="article">
+  <h1>How to Mine Xelis (XEL): CPU Mining Guide (2026)</h1>
+  <div class="meta">Guide &middot; ~9 min read &middot; by the Hydrax.GG team</div>
+  <p class="lead">Xelis is one of the few coins in 2026 that is genuinely built for CPUs. <strong>Its xelishashv3 algorithm is memory-hard by design &mdash; so the processor in your desktop can compete, and your GPU stays free to mine something else.</strong></p>
+  <p>This guide covers what xelishashv3 actually wants from your hardware, the exact steps to point a miner at a XEL pool, the Windows tuning that adds real hashrate, and &mdash; bluntly &mdash; what the earnings look like at mid-2026 prices, so you go in with your eyes open. If you're brand new to mining in general, start with our <a href="how-to-start-mining-crypto.html">beginner's guide to mining crypto</a> first, then come back.</p>
+
+  <h2>What is xelishashv3, and why it favors CPUs</h2>
+  <p>Xelis mines with <strong>xelishashv3</strong>, live since December 2025. It's a <em>memory-hard</em> algorithm that chains <strong>BLAKE3, ChaCha8 and AES</strong> over a <strong>544 KB per-hash scratchpad</strong>. That scratchpad is the point: it's sized to live in a CPU's cache hierarchy, and the constant random access to it punishes the wide-but-cache-poor parallelism that makes GPUs and ASICs dominant on other algorithms. The result is a coin that is <strong>deliberately CPU-favored and GPU/ASIC-resistant</strong> &mdash; the same design philosophy as Monero's RandomX, with a different recipe.</p>
+  <p>The practical upshot: a modern desktop CPU is competitive hardware here, and the chips that shine are the ones with the most fast cache. If you're weighing CPU coins against GPU coins more broadly, our <a href="asic-vs-gpu-mining.html">ASIC vs GPU mining comparison</a> explains why algorithm design decides which hardware wins.</p>
+
+  <h2>What hardware do you need?</h2>
+  <p>Any modern desktop CPU can mine XEL, but cache is king:</p>
+  <ul>
+    <li><strong>Large-L3 chips shine.</strong> AMD's X3D parts with <strong>96 MB of L3 cache</strong> are standout performers, because more of those 544 KB scratchpads stay in cache instead of spilling to slow system RAM.</li>
+    <li><strong>Expect roughly the ~12 kH/s class from a top desktop CPU</strong> on v3. One important warning: older <strong>18&ndash;19 kH/s figures still circulating online are from the previous v2 algorithm</strong> &mdash; v3 is a different beast, and those numbers are not comparable. Don't plug v2 hashrates into a profit estimate.</li>
+    <li><strong>SMT helps.</strong> This algorithm scales with logical cores, so leave Hyper-Threading / SMT enabled.</li>
+    <li><strong>RAM matters less than cache</strong>, but you'll want enough free memory for the miner's scratchpads across all threads, plus large-pages headroom (more on that below).</li>
+  </ul>
+  <p>Building or upgrading a rig? Our <a href="../#gear">recommended gear picks</a> cover the hardware that earns its keep, and if a GPU is part of your plan, see the <a href="best-mining-gpu-2026.html">best mining GPUs for 2026</a> &mdash; because as you'll see, the smartest way to mine XEL is <em>next to</em> a GPU coin, not instead of one.</p>
+
+  <div class="cta">
+    <strong>See what your CPU would earn on XEL first &rarr;</strong><br/>
+    <a class="btn primary" href="../#calc">Open the Mining Profit Calculator</a>
+  </div>
+
+  <h2>Step 1: Get an official Xelis wallet</h2>
+  <p>Payouts need somewhere to land. Set up the <strong>official Xelis wallet</strong> from the project's site or docs, and copy your XEL address. Verify you're downloading from the official source, and back up your seed phrase offline before you mine a single share.</p>
+
+  <h2>Step 2: Pick a pool</h2>
+  <p>Unless you want rare, random solo rewards, mine on a pool for small-but-steady payouts. Established XEL options include:</p>
+  <ul>
+    <li><strong>HeroMiners</strong> &mdash; <code>xelis.herominers.com:1225</code></li>
+    <li><strong>Kryptex</strong></li>
+    <li><strong>WoolyPooly</strong></li>
+    <li><strong>K1Pool</strong></li>
+  </ul>
+  <p>More pools are listed in the official Xelis docs. Compare fees, minimum payouts and server locations, and pick one with a server near you &mdash; lower latency means fewer stale shares. We also keep ready-to-paste connection details on our <a href="../#pools">pools page</a>.</p>
+
+  <h2>Step 3: Choose your mining software</h2>
+  <p>Here's the honest state of XEL miners in mid-2026:</p>
+  <ul>
+    <li><strong>SRBMiner-MULTI</strong> &mdash; the popular third-party choice, with a <strong>1.5% dev fee</strong> on XEL.</li>
+    <li><strong>The official Xelis miner</strong> &mdash; the project's own reference miner.</li>
+    <li><strong><a href="../#ecosystem">HydraX</a></strong> &mdash; our own miner. XEL support is <strong>in active development and coming soon at a flat 1% dev fee</strong>. HydraX does <em>not</em> mine Xelis yet, so for today, use one of the two miners above &mdash; we'd rather tell you that straight than pretend otherwise. If you want to see what HydraX already mines (ETC and Ravencoin-family coins on GPU, Monero on CPU), the beta is on the <a href="../#ecosystem">ecosystem page</a>.</li>
+  </ul>
+  <p>For the wider field of what's free and what each miner charges, see our roundup of the <a href="best-free-mining-software-2026.html">best free mining software in 2026</a>.</p>
+
+  <h2>Step 4: Run the miner with your address</h2>
+  <p>Setup is the same three facts as every coin: <strong>which algorithm, which pool, which wallet</strong>. Point the miner at xelishashv3, paste the pool address and port from Step 2, and use <em>your</em> XEL wallet address as the username, with an optional worker name if you run several machines. Launch it, watch the console for a connection and a hashrate in kH/s, then open the pool's dashboard and confirm your worker shows up with <strong>accepted shares</strong> &mdash; that's the proof you're earning. Once you pass the pool's minimum payout, XEL lands in your wallet.</p>
+
+  <h2>Step 5: Tune it (Windows tips that actually move the needle)</h2>
+  <ul>
+    <li><strong>Enable "Lock pages in memory."</strong> Granting your user this Windows policy lets the miner use 2 MB large pages, which cuts address-translation overhead on a memory-hard algorithm. It's worth roughly <strong>+8%</strong> &mdash; the single best free tweak available.</li>
+    <li><strong>Use all logical cores for XEL-only mining.</strong> SMT helps this algorithm, so a 16-thread chip should run 16 mining threads when the box is dedicated.</li>
+    <li><strong>Leave ~2 cores free when dual-mining.</strong> If the same machine's GPU is mining a coin like <a href="how-to-mine-ethereum-classic-etc.html">Ethereum Classic</a>, the GPU's host thread needs CPU time to keep it fed. Pegging every core can starve the GPU and cost far more there than the extra CPU threads earn. Two reserved cores is the sweet spot.</li>
+    <li><strong>Watch temperatures.</strong> A CPU pinned at 100% load all day needs a competent cooler and decent airflow. Throttling quietly eats your hashrate.</li>
+  </ul>
+
+  <div class="cta">
+    <strong>Tuned it? Check whether the watts are worth it &rarr;</strong><br/>
+    <a class="btn primary" href="../#calc">Open the free calculator</a>
+  </div>
+
+  <h2>Profitability in 2026: the blunt version</h2>
+  <p>Here's the part most guides bury: <strong>XEL fell from around $1.00 at the v3 launch to roughly $0.40 by mid-2026</strong>. At that price, even a high-end desktop CPU grosses <strong>well under $1 per day</strong> &mdash; before you subtract electricity. Depending on your power rate, net profit ranges from "small" to "negative." Check what your rate does to the math with our <a href="how-to-calculate-mining-profit.html">mining profit walkthrough</a> and the <a href="../#calc">free calculator</a>.</p>
+  <p>So why mine it at all? Three honest reasons:</p>
+  <ul>
+    <li><strong>Diversification or speculation.</strong> You're accumulating a coin you believe in at today's difficulty, betting the price recovers.</li>
+    <li><strong>Free extra revenue on top of GPU mining.</strong> This is the strongest case. If your GPU is already mining ETC or Ravencoin, the CPU sits mostly idle &mdash; pointing it at a CPU coin adds a second income stream from the same box and nearly the same power bill. Our <a href="how-to-dual-mine-gpu-cpu.html">dual-mining guide</a> walks through exactly this setup.</li>
+    <li><strong>Comparing CPU coins.</strong> XEL competes with Monero for your CPU cycles &mdash; see <a href="is-monero-mining-profitable-2026.html">whether Monero mining is profitable in 2026</a> and pick whichever pays better on your chip that week.</li>
+  </ul>
+  <p>What XEL is <em>not</em>, at $0.40, is a primary earner. Go in with that expectation, and re-check the <a href="../#calc">calculator</a> whenever price or difficulty moves.</p>
+
+  <h3 class="faq">Frequently asked</h3>
+  <p><strong>What hashrate does a CPU get mining Xelis?</strong> On xelishashv3 (live since December 2025), a top desktop CPU lands in roughly the ~12 kH/s class. Ignore the 18&ndash;19 kH/s figures still floating around &mdash; those are from the old v2 algorithm and aren't comparable. Large-L3 chips like AMD's 96 MB X3D parts do especially well.</p>
+  <p><strong>Can I mine Xelis with a GPU or an ASIC?</strong> Xelis is deliberately CPU-favored: the 544 KB memory-hard scratchpad with BLAKE3 + ChaCha8 + AES resists GPU and ASIC parallelism. Put your GPU on a GPU coin instead and let the CPU handle XEL &mdash; that's the <a href="how-to-dual-mine-gpu-cpu.html">dual-mining</a> play.</p>
+  <p><strong>Is Xelis mining profitable in 2026?</strong> Not as a primary earner &mdash; at roughly $0.40 per XEL, a high-end CPU grosses well under $1/day. It works as diversification, speculation, or near-free extra revenue alongside GPU mining. Run your exact CPU and power rate through the <a href="../#calc">calculator</a> before committing.</p>
+  <p><strong>Does SMT or Hyper-Threading help?</strong> Yes &mdash; use all logical cores when the machine only mines XEL. If you're dual-mining next to a GPU coin, reserve about two cores so the GPU stays fed.</p>
+
+  <div class="cta">
+    <strong>XEL support is coming to HydraX &mdash; flat 1% dev fee.</strong><br/>
+    <a class="btn primary" href="../#ecosystem">See the HydraX miner &rarr;</a>
+  </div>
+  <p style="color:var(--dim);font-size:13px;margin-top:24px">Estimates only. Mining returns depend on volatile prices, rising difficulty, and your real costs. Not financial advice.</p>
+</article>
+<!-- Cloudflare Web Analytics --><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "1c75aea993774eccbd8687fa25b2046f"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
