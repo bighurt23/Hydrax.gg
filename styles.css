@@ -115,6 +115,13 @@ section.eco,section.gear,section.learn{max-width:var(--maxw);margin:64px auto;pa
 .connect{display:block;background:#0c0a14;border:1px solid var(--line);border-radius:8px;
   padding:9px 11px;margin:0 0 12px;font:12px/1.5 ui-monospace,Consolas,monospace;
   color:var(--cyan);overflow-x:auto;white-space:nowrap}
+/* preferred-pool partner chip (official 2Miners logo, unaltered, on a light lockup) */
+.poolpartner{display:flex;align-items:center;gap:14px;margin:2px 0 22px;flex-wrap:wrap}
+.poolpartner .lbl{font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:.09em}
+.brandchip{background:#fff;border-radius:10px;padding:9px 16px;display:inline-flex;align-items:center;
+  box-shadow:0 2px 12px rgba(0,0,0,.28);transition:transform .15s ease,box-shadow .15s ease}
+.brandchip:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.36)}
+.brandchip img{display:block;height:26px;width:auto}
 
 /* learn */
 .learn h3{font-size:18px;margin:22px 0 6px;color:var(--pur2)}

@@ -18,7 +18,7 @@
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
 {"@type":"Question","name":"What GPU do I need to mine Pearl (PRL)?","acceptedAnswer":{"@type":"Answer","text":"Pearl's pearlhash algorithm runs on NVIDIA GPUs in practice, and RTX 30, 40 and 50 series cards all mine it. Because the work is int8 matrix multiplication, hashrate scales with compute rather than memory bandwidth: an RTX 5090 reaches roughly 320 TH/s, an RTX 4090 about 230 TH/s, an RTX 5080 about 183 TH/s, and an RTX 5070 Ti about 137 TH/s."}},
 {"@type":"Question","name":"What makes Pearl different from other mineable coins?","acceptedAnswer":{"@type":"Answer","text":"Pearl is a proof-of-useful-work coin. Its pearlhash algorithm is real int8 matrix multiplication — the same math AI inference runs — so every accepted share is verifiable matrix compute rather than a throwaway puzzle. The practical consequence for miners is that pearlhash is compute-bound, so core clock matters more than memory clock when you tune, the opposite of memory-bound algorithms like Etchash or KawPow."}},
-{"@type":"Question","name":"Which mining software supports pearlhash today?","acceptedAnswer":{"@type":"Answer","text":"Today's options and their dev fees: SRBMiner-MULTI at 3% is the fastest established miner, AlphaMiner charges 1%, IpMiner is 0% but tied to LuckyPool, BzMiner is 2% with a CPU mode in beta, and Rgminer charges 5%. HydraX is building a cleanroom pearlhash miner that already benches SRBMiner-class speed on an RTX 5070 Ti and will ship at a flat 1% dev fee — it's coming soon, so for mining today you use one of the third-party miners."}},
+{"@type":"Question","name":"Which mining software supports pearlhash today?","acceptedAnswer":{"@type":"Answer","text":"HydraX now mines Pearl on its cleanroom pearlhash kernel at a flat 1% dev fee, on NVIDIA RTX 30, 40 and 50 series cards (fastest on the 50-series; 30/40 are supported via a WMMA fallback). On an RTX 5070 Ti its kernel runs at a pool-verified ~145 TH/s, ahead of SRBMiner-MULTI's ~137.79 TH/s effective. The established third-party options and their dev fees: SRBMiner-MULTI at 3% is the fastest of the older miners, AlphaMiner charges 1%, IpMiner is 0% but tied to LuckyPool, BzMiner is 2% with a CPU mode in beta, and Rgminer charges 5%."}},
 {"@type":"Question","name":"Is Pearl mining profitable in 2026?","acceptedAnswer":{"@type":"Answer","text":"It slides with price and difficulty. An RTX 5090 earned about $17 per day in June 2026, roughly half of the April launch peak. Pearl is a brand-new coin with a volatile price and thin liquidity, so always run your own card's hashrate and electricity rate through a current profit calculator before committing hardware."}}]}
 </script>
 </head>
@@ -41,7 +41,7 @@
   <h1>How to Mine Pearl (PRL): GPU Mining Guide (2026)</h1>
   <div class="meta">Guide &middot; ~8 min read &middot; by the Hydrax.GG team</div>
   <p class="lead">Pearl is the rare new coin with a genuinely new idea: <strong>its pearlhash algorithm is real int8 matrix multiplication &mdash; the same math AI inference runs &mdash; so every share your GPU submits is verifiable matrix compute</strong>, not a throwaway puzzle.</p>
-  <p>We build the <a href="../#ecosystem">HydraX miner</a>, and a cleanroom pearlhash miner is in active development right now (more below). This is the hands-on guide: which cards mine PRL, the miners and pools you can use <em>today</em> with their real fees, the launch steps, and how to tune a <strong>compute-bound</strong> algorithm &mdash; the opposite of everything you learned on <a href="how-to-mine-ethereum-classic-etc.html">Etchash</a>.</p>
+  <p>We build the <a href="../#ecosystem">HydraX miner</a>, and as of v3.0.1 it mines Pearl on a cleanroom pearlhash kernel at a flat 1% dev fee (more below). This is the hands-on guide: which cards mine PRL, the miners and pools you can use <em>today</em> with their real fees, the launch steps, and how to tune a <strong>compute-bound</strong> algorithm &mdash; the opposite of everything you learned on <a href="how-to-mine-ethereum-classic-etc.html">Etchash</a>.</p>
 
   <h2>What is pearlhash, and why "useful work" matters</h2>
   <p>Most proof-of-work burns electricity on math that exists only to be hard. Pearl doesn't: pearlhash is built on <strong>int8 matrix multiplication</strong>, the core operation of AI inference &mdash; so when your GPU mines PRL, each accepted share is a verifiable proof of real matrix work.</p>
@@ -75,8 +75,8 @@
   </ul>
   <p>Quick decoder: <strong>PPLNS</strong> pays by your share of recent work; <strong>PROP</strong> splits each block as it's found. Either is fine for a home rig &mdash; the fee matters more. Grab your pool's stratum address and port for the next step.</p>
 
-  <h2>Step 3: Download a miner (what works today, and what's coming)</h2>
-  <p>Honesty first: <strong>HydraX doesn't mine Pearl yet.</strong> Our cleanroom pearlhash miner is in active development &mdash; already benching SRBMiner-class speed on an RTX 5070 Ti &mdash; and will ship at a <strong>flat 1% dev fee</strong>. Watch the <a href="../#ecosystem">HydraX miner page</a> for the release. Until then, these miners mine PRL today:</p>
+  <h2>Step 3: Download a miner</h2>
+  <p>Our pick, honestly: <strong>HydraX now mines Pearl</strong> as of v3.0.1, on a cleanroom pearlhash kernel at a <strong>flat 1% dev fee</strong>, on NVIDIA RTX 30, 40 and 50 series cards (fastest on the 50-series; 30/40 are newly supported via a WMMA fallback). On an RTX 5070 Ti its kernel runs at a <strong>pool-verified ~145 TH/s &mdash; ahead of SRBMiner-MULTI's ~137.79 TH/s effective</strong>, so you get the speed of the 3% miner at the price of the 1% miner. Grab it from the <a href="../#ecosystem">HydraX miner page</a>. The established third-party miners also mine PRL today:</p>
   <ul>
     <li><strong>SRBMiner-MULTI</strong> &mdash; 3% dev fee. The fastest established pearlhash miner right now.</li>
     <li><strong>AlphaMiner</strong> &mdash; 1% dev fee.</li>
@@ -114,12 +114,12 @@
   <h3 class="faq">Frequently asked</h3>
   <p><strong>What GPU do I need to mine Pearl (PRL)?</strong> An NVIDIA RTX 30, 40 or 50 series card &mdash; NVIDIA only, in practice. Hashrate scales with compute: RTX 5090 ~320 TH/s, RTX 4090 ~230 TH/s, RTX 5080 ~183 TH/s, RTX 5070 Ti ~137 TH/s.</p>
   <p><strong>What makes Pearl different from other mineable coins?</strong> It's proof-of-useful-work: pearlhash is real int8 matrix multiplication &mdash; the same math AI inference runs &mdash; so every accepted share is verifiable matrix compute. For tuning, that means core clock matters more than memory clock, the opposite of Etchash or KawPow.</p>
-  <p><strong>Which mining software supports pearlhash today?</strong> SRBMiner-MULTI (3% dev fee, fastest established), AlphaMiner (1%), IpMiner (0%, tied to LuckyPool), BzMiner (2%, CPU mode in beta) and Rgminer (5%). The <a href="../#ecosystem">HydraX pearlhash miner</a> is in active development &mdash; already benching SRBMiner-class speed on an RTX 5070 Ti &mdash; and will ship at a flat 1% dev fee; until then, use a third-party miner.</p>
+  <p><strong>Which mining software supports pearlhash today?</strong> The <a href="../#ecosystem">HydraX pearlhash miner</a> now mines Pearl at a flat 1% dev fee on NVIDIA RTX 30/40/50 series cards (fastest on the 50-series; 30/40 via a WMMA fallback), and on an RTX 5070 Ti runs at a pool-verified ~145 TH/s &mdash; ahead of SRBMiner-MULTI's ~137.79 TH/s effective. The established third-party miners are SRBMiner-MULTI (3% dev fee, fastest of the older miners), AlphaMiner (1%), IpMiner (0%, tied to LuckyPool), BzMiner (2%, CPU mode in beta) and Rgminer (5%).</p>
   <p><strong>Is Pearl mining profitable in 2026?</strong> It slides with price and difficulty: an RTX 5090 earned about $17/day in June 2026, roughly half the April launch peak. PRL is brand-new, volatile and thinly traded, so check your own card and power rate in the <a href="../#calc">calculator</a> with today's numbers first.</p>
 
   <div class="cta">
-    <strong>A flat-1% pearlhash miner is coming &mdash; HydraX PRL support is in active development.</strong><br/>
-    <a class="btn primary" href="../#ecosystem">See the HydraX miner &rarr;</a>
+    <strong>HydraX now mines Pearl at a flat 1% &mdash; a pool-verified ~145 TH/s on an RTX 5070 Ti.</strong><br/>
+    <a class="btn primary" href="../#ecosystem">Get the HydraX miner &rarr;</a>
   </div>
   <p style="color:var(--dim);font-size:13px;margin-top:24px">Estimates only. Mining returns depend on volatile prices, rising difficulty, and your real costs. Not financial advice.</p>
 </article>
