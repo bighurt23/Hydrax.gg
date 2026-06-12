@@ -43,7 +43,9 @@ nav a:hover{color:var(--txt)}
 .hero h1{font-size:clamp(30px,5vw,52px);margin:0 0 14px;
   background:linear-gradient(90deg,var(--pur2),var(--pink2),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
 .lede{max-width:680px;margin:0 auto 24px;color:var(--dim);font-size:17px}
-.herobtns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:36px}
+.herobtns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:14px}
+.trustline{text-align:center;color:var(--dim);font-size:13px;margin:0 auto 36px;max-width:580px}
+.trustline strong{color:var(--pink2)}
 .btn{display:inline-block;border:1px solid var(--line);border-radius:10px;padding:12px 22px;
   font-weight:700;font-size:15px;cursor:pointer;background:var(--panel);color:var(--txt);transition:.15s}
 .btn.primary{border:none;background:linear-gradient(90deg,var(--pur),var(--pink));color:#fff;
