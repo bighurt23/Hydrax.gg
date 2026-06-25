@@ -142,9 +142,9 @@ footer{border-top:1px solid var(--line);margin-top:60px;padding:30px 26px 50px;t
   header{flex-wrap:wrap;gap:10px 16px}
   .logo{order:1}
   .ticker{order:2;max-width:none;flex:1;text-align:right}
-  nav{order:3;flex:1 0 100%;flex-wrap:wrap;justify-content:center;gap:8px 18px;margin:0;
+  nav{order:3;flex:0 0 100%;display:block;text-align:center;margin:0;font-size:0;
       padding-top:11px;border-top:1px solid var(--line)}
-  nav a{white-space:nowrap;font-size:13.5px;padding:3px 2px}
+  nav a{display:inline-block;white-space:nowrap;font-size:13.5px;padding:4px 8px}
   .grid2,.out,.ecogrid,.geargrid{grid-template-columns:1fr}
   .article table{display:block;overflow-x:auto;white-space:nowrap}
 }
@@ -154,7 +154,7 @@ footer{border-top:1px solid var(--line);margin-top:60px;padding:30px 26px 50px;t
   main,.calchead{padding-left:18px;padding-right:18px}
   section.eco,section.gear,section.learn{padding-left:18px;padding-right:18px}
   .panel{padding:20px 18px}
-  nav{gap:7px 14px} nav a{font-size:13px}
+  nav a{font-size:13px;padding:4px 6px}
   .lede{font-size:16px}
 }
 
