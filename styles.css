@@ -6,8 +6,8 @@
   --maxw:1080px;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;color:var(--txt);font:15px/1.6 -apple-system,Segoe UI,Roboto,sans-serif;
+html{scroll-behavior:smooth;overflow-x:clip}
+body{margin:0;overflow-x:clip;color:var(--txt);font:15px/1.6 -apple-system,Segoe UI,Roboto,sans-serif;
   background:
     radial-gradient(900px 520px at 82% -5%, rgba(255,46,151,.16) 0%, transparent 60%),
     radial-gradient(1000px 620px at 10% 110%, rgba(139,108,255,.18) 0%, transparent 60%),
@@ -74,7 +74,7 @@ main{max-width:760px;margin:18px auto 0;padding:0 26px}
   background:linear-gradient(90deg,var(--pur),var(--pink),var(--cyan))}
 .panel h2{margin:0 0 6px;font-size:22px}
 .sub{color:var(--dim);font-size:14px;margin:0 0 20px}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.grid2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px}
 label{display:flex;flex-direction:column;gap:6px;font-size:12px;color:var(--dim);
   text-transform:uppercase;letter-spacing:.5px;font-weight:700;min-width:0}
 .hint{text-transform:none;color:var(--dim);font-weight:600;opacity:.8}
@@ -85,7 +85,7 @@ input:focus,select:focus{outline:none;border-color:var(--pur)}
 .live{color:var(--grn);text-transform:none;font-weight:600}
 .hidden{display:none!important}
 .out{margin-top:22px;border-top:1px solid var(--line);padding-top:20px;
-  display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
 .out .o{background:#0e1119;border:1px solid var(--line);border-radius:12px;padding:14px}
 .out .o b{font-size:24px;font-weight:800;display:block}
 .out .o span{color:var(--dim);font-size:11px;text-transform:uppercase;letter-spacing:.5px}
@@ -97,7 +97,7 @@ section.eco,section.gear,section.learn{max-width:var(--maxw);margin:64px auto;pa
 .ecohead{text-align:center;margin-bottom:30px}
 .ecohead h2,.gear h2,.learn h2{font-size:28px;margin:0 0 8px}
 .ecohead p{color:var(--dim);max-width:640px;margin:0 auto}
-.ecogrid,.geargrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.ecogrid,.geargrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
 .ecocard,.gecard,.geard{background:linear-gradient(180deg,var(--panel),#11101a);border:1px solid var(--line);
   border-radius:16px;padding:22px;display:block}
 .ecocard.featured{border-color:var(--pink)}
