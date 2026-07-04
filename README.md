@@ -1,7 +1,7 @@
 # Hydrax.GG
 
 Free crypto-mining profit, ROI, and electricity calculators for GPU rigs and ASIC miners —
-the front porch of the **HydraX** mining stack (the HydraX miner + Operator dashboard + Hydra chain).
+the front porch of the **HydraX** mining stack (the HydraX miner + Operator dashboard).
 
 Static site (HTML/CSS/JS, no build step). Deployed via **GitHub Pages** → `hydrax.gg`.
 
