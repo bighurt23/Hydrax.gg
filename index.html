@@ -125,90 +125,6 @@
   </div>
 </section>
 
-<!-- CALCULATORS -->
-<main id="calc">
-  <div class="calchead">
-    <h2 class="calctitle">Free mining profit calculators</h2>
-    <p class="sub">Check any GPU or ASIC rig for profit, ROI/breakeven, and electricity cost. Live coin data, no signup.</p>
-  </div>
-  <div class="calctabs">
-    <div class="tabs" id="tabs">
-      <button class="tab active" data-t="profit">💰 Profit Calculator</button>
-      <button class="tab" data-t="roi">📈 ROI / Breakeven</button>
-      <button class="tab" data-t="power">🔌 Electricity Cost</button>
-    </div>
-  </div>
-  <!-- PROFIT -->
-  <section class="panel" data-p="profit">
-    <h2>Mining Profit Calculator</h2>
-    <p class="sub">Enter your rig's numbers. Use the live coin price auto-fill, or type a gross daily revenue
-       figure straight from WhatToMine or your pool dashboard.</p>
-    <div class="grid2">
-      <label>Revenue mode
-        <select id="pr-mode">
-          <option value="gross" selected>I know my gross $/day</option>
-          <option value="auto">Pick a coin (live data)</option>
-        </select>
-      </label>
-      <label id="pr-coin-wrap" class="hidden">Coin <span class="live" id="pr-coinmeta"></span>
-        <select id="pr-coin"></select></label>
-      <label id="pr-hs-wrap" class="hidden">Your hashrate
-        <input id="pr-hs" type="number" step="0.01" value="100"></label>
-      <label id="pr-unit-wrap" class="hidden">Unit
-        <select id="pr-unit">
-          <option>H/s</option><option>kH/s</option><option selected>MH/s</option>
-          <option>GH/s</option><option>TH/s</option><option>Sol/s</option>
-        </select></label>
-      <label id="pr-gross-wrap">Gross revenue ($/day)
-        <input id="pr-gross" type="number" step="0.01" value="5.00"></label>
-      <label>Power draw (Watts)
-        <input id="pr-watts" type="number" value="500"></label>
-      <label>Your region <span class="hint">(sets avg rate)</span>
-        <select id="pr-loc"></select></label>
-      <label>Electricity rate ($/kWh)
-        <input id="pr-rate" type="number" step="0.001" value="0.12"></label>
-      <label>Pool / dev fee (%)
-        <input id="pr-fee" type="number" step="0.1" value="1"></label>
-      <label>Uptime (%)
-        <input id="pr-uptime" type="number" step="1" value="98"></label>
-    </div>
-    <div class="out" id="pr-out"></div>
-  </section>
-
-  <!-- ROI -->
-  <section class="panel hidden" data-p="roi">
-    <h2>ROI &amp; Breakeven Calculator</h2>
-    <p class="sub">How long until your hardware pays for itself, with optional difficulty growth so the
-       estimate stays honest (your share of block rewards shrinks as the network grows).</p>
-    <div class="grid2">
-      <label>Hardware cost ($)
-        <input id="roi-cost" type="number" value="3000"></label>
-      <label>Net profit ($/day, today)
-        <input id="roi-profit" type="number" step="0.01" value="4.00"></label>
-      <label>Monthly difficulty growth (%)
-        <input id="roi-growth" type="number" step="0.5" value="3"></label>
-    </div>
-    <div class="out" id="roi-out"></div>
-  </section>
-
-  <!-- POWER -->
-  <section class="panel hidden" data-p="power">
-    <h2>Electricity Cost Calculator</h2>
-    <p class="sub">What your rig actually costs to run, the number that quietly eats most miners' profit.</p>
-    <div class="grid2">
-      <label>Power draw (Watts)
-        <input id="pw-watts" type="number" value="1200"></label>
-      <label>Your region <span class="hint">(sets avg rate)</span>
-        <select id="pw-loc"></select></label>
-      <label>Electricity rate ($/kWh)
-        <input id="pw-rate" type="number" step="0.001" value="0.12"></label>
-      <label>Hours per day
-        <input id="pw-hours" type="number" step="1" value="24"></label>
-    </div>
-    <div class="out" id="pw-out"></div>
-  </section>
-</main>
-
 <!-- POOLS -->
 <section class="gear" id="pools">
   <h2>Recommended pools</h2>
@@ -293,6 +209,90 @@
   </div>
   <p class="sub" style="margin-top:16px">2Miners runs pools for many more coins like ETHW, ERG, ZEC, BEAM, and more. See the full lineup at <a href="https://2miners.com" target="_blank" rel="noopener">2miners.com</a>.</p>
 </section>
+
+<!-- CALCULATORS -->
+<main id="calc">
+  <div class="calchead">
+    <h2 class="calctitle">Free mining profit calculators</h2>
+    <p class="sub">Check any GPU or ASIC rig for profit, ROI/breakeven, and electricity cost. Live coin data, no signup.</p>
+  </div>
+  <div class="calctabs">
+    <div class="tabs" id="tabs">
+      <button class="tab active" data-t="profit">💰 Profit Calculator</button>
+      <button class="tab" data-t="roi">📈 ROI / Breakeven</button>
+      <button class="tab" data-t="power">🔌 Electricity Cost</button>
+    </div>
+  </div>
+  <!-- PROFIT -->
+  <section class="panel" data-p="profit">
+    <h2>Mining Profit Calculator</h2>
+    <p class="sub">Enter your rig's numbers. Use the live coin price auto-fill, or type a gross daily revenue
+       figure straight from WhatToMine or your pool dashboard.</p>
+    <div class="grid2">
+      <label>Revenue mode
+        <select id="pr-mode">
+          <option value="gross" selected>I know my gross $/day</option>
+          <option value="auto">Pick a coin (live data)</option>
+        </select>
+      </label>
+      <label id="pr-coin-wrap" class="hidden">Coin <span class="live" id="pr-coinmeta"></span>
+        <select id="pr-coin"></select></label>
+      <label id="pr-hs-wrap" class="hidden">Your hashrate
+        <input id="pr-hs" type="number" step="0.01" value="100"></label>
+      <label id="pr-unit-wrap" class="hidden">Unit
+        <select id="pr-unit">
+          <option>H/s</option><option>kH/s</option><option selected>MH/s</option>
+          <option>GH/s</option><option>TH/s</option><option>Sol/s</option>
+        </select></label>
+      <label id="pr-gross-wrap">Gross revenue ($/day)
+        <input id="pr-gross" type="number" step="0.01" value="5.00"></label>
+      <label>Power draw (Watts)
+        <input id="pr-watts" type="number" value="500"></label>
+      <label>Your region <span class="hint">(sets avg rate)</span>
+        <select id="pr-loc"></select></label>
+      <label>Electricity rate ($/kWh)
+        <input id="pr-rate" type="number" step="0.001" value="0.12"></label>
+      <label>Pool / dev fee (%)
+        <input id="pr-fee" type="number" step="0.1" value="1"></label>
+      <label>Uptime (%)
+        <input id="pr-uptime" type="number" step="1" value="98"></label>
+    </div>
+    <div class="out" id="pr-out"></div>
+  </section>
+
+  <!-- ROI -->
+  <section class="panel hidden" data-p="roi">
+    <h2>ROI &amp; Breakeven Calculator</h2>
+    <p class="sub">How long until your hardware pays for itself, with optional difficulty growth so the
+       estimate stays honest (your share of block rewards shrinks as the network grows).</p>
+    <div class="grid2">
+      <label>Hardware cost ($)
+        <input id="roi-cost" type="number" value="3000"></label>
+      <label>Net profit ($/day, today)
+        <input id="roi-profit" type="number" step="0.01" value="4.00"></label>
+      <label>Monthly difficulty growth (%)
+        <input id="roi-growth" type="number" step="0.5" value="3"></label>
+    </div>
+    <div class="out" id="roi-out"></div>
+  </section>
+
+  <!-- POWER -->
+  <section class="panel hidden" data-p="power">
+    <h2>Electricity Cost Calculator</h2>
+    <p class="sub">What your rig actually costs to run, the number that quietly eats most miners' profit.</p>
+    <div class="grid2">
+      <label>Power draw (Watts)
+        <input id="pw-watts" type="number" value="1200"></label>
+      <label>Your region <span class="hint">(sets avg rate)</span>
+        <select id="pw-loc"></select></label>
+      <label>Electricity rate ($/kWh)
+        <input id="pw-rate" type="number" step="0.001" value="0.12"></label>
+      <label>Hours per day
+        <input id="pw-hours" type="number" step="1" value="24"></label>
+    </div>
+    <div class="out" id="pw-out"></div>
+  </section>
+</main>
 
 <!-- SEO content -->
 <section class="learn">
