@@ -4,15 +4,15 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>HydraX Miner — Free GPU &amp; CPU Crypto Mining Software | Download (Windows, Linux, HiveOS)</title>
-<meta name="description" content="Download HydraX Miner — free, code-signed GPU &amp; CPU crypto mining software for Windows, Linux and HiveOS. Mine Pearl (pearlhash), Kaspa (kHeavyHash), Quai (quaikawpow), Ethereum Classic (Etchash), Ravencoin (KawPow), Neurai and Frencoin on the GPU, plus Monero, Zephyr and Xelis on the CPU — dual GPU+CPU mining on one app. Built-in backup pools, optional per-card auto-overclock, flat 1% dev fee. Pearl runs on NVIDIA RTX 30/40/50-series."/>
-<meta name="keywords" content="HydraX miner, download HydraX miner, crypto mining software, free GPU miner, free CPU miner, NVIDIA mining software, Pearl miner, pearlhash miner, Kaspa miner, kHeavyHash, Quai miner, quaikawpow, Ethereum Classic miner, Etchash, Ravencoin miner, KawPow, Neurai miner, Frencoin miner, Monero miner, RandomX, Zephyr miner, Xelis miner, xelishash, dual mining, auto overclock, HiveOS miner, Linux crypto miner, code-signed miner, safe crypto miner"/>
+<meta name="description" content="Download HydraX Miner — free, code-signed GPU &amp; CPU crypto mining software for Windows, Linux and HiveOS. Merge-mine Pearl (pearlhash) and modelOS (MDL) at once for two coins from one card, plus Kaspa (kHeavyHash), Quai (quaikawpow), Ethereum Classic (Etchash), Ravencoin (KawPow), Neurai and Frencoin on the GPU, plus Monero, Zephyr and Xelis on the CPU — dual GPU+CPU mining on one app. Built-in backup pools, optional per-card auto-overclock, flat 1% dev fee. Pearl runs on NVIDIA RTX 30/40/50-series."/>
+<meta name="keywords" content="HydraX miner, download HydraX miner, crypto mining software, free GPU miner, free CPU miner, NVIDIA mining software, Pearl miner, pearlhash miner, modelOS miner, MDL miner, mine modelOS MDL, Pearl modelOS merge mining, merge mining, merge mine Pearl MDL, PRL MDL merge, Kaspa miner, kHeavyHash, Quai miner, quaikawpow, Ethereum Classic miner, Etchash, Ravencoin miner, KawPow, Neurai miner, Frencoin miner, Monero miner, RandomX, Zephyr miner, Xelis miner, xelishash, dual mining, auto overclock, HiveOS miner, Linux crypto miner, code-signed miner, safe crypto miner"/>
 <meta name="robots" content="index, follow, max-image-preview:large"/>
 <link rel="canonical" href="https://hydrax.gg/miner/"/>
 <meta name="theme-color" content="#0a0a12"/>
 <link rel="icon" href="/favicon.png"/>
 <meta property="og:site_name" content="HydraX"/>
 <meta property="og:title" content="HydraX Miner — Free GPU &amp; CPU Crypto Mining Software"/>
-<meta property="og:description" content="One app, every coin, your hardware. Free code-signed GPU+CPU miner for Windows, Linux &amp; HiveOS — Pearl, Kaspa, Quai, ETC, RVN, Monero, Zephyr, Xelis. 1% fee."/>
+<meta property="og:description" content="One app, every coin, your hardware. Merge-mine Pearl + modelOS (MDL) for two coins from one card. Free code-signed GPU+CPU miner for Windows, Linux &amp; HiveOS — Pearl, Kaspa, Quai, ETC, RVN, Monero, Zephyr, Xelis. 1% fee."/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://hydrax.gg/miner/"/>
 <meta property="og:image" content="https://hydrax.gg/og.png?v=2"/>
@@ -70,12 +70,59 @@
   <p class="trustline">🔒 Code-signed, verified publisher <strong>HYDRAX&nbsp;LLC</strong> · Microsoft Defender-clean · open beta · 1% dev fee · NVIDIA (AMD in progress)</p>
 </section>
 
+<!-- MDL MERGE-MINING HIGHLIGHT (v3.4.2) -->
+<section class="mergemine" id="mdl" aria-labelledby="mdl-h">
+  <style>
+    .mergemine{max-width:var(--maxw);margin:26px auto 8px;padding:26px 24px;border-radius:18px;
+      position:relative;overflow:hidden;border:1px solid var(--pink);
+      background:
+        radial-gradient(720px 300px at 10% -30%, rgba(255,46,151,.18), transparent 60%),
+        radial-gradient(720px 340px at 100% 130%, rgba(67,214,224,.15), transparent 60%),
+        linear-gradient(180deg,#1a1330,#120e1e);
+      box-shadow:0 0 0 1px rgba(255,46,151,.12), 0 24px 60px -30px var(--glow)}
+    .mergemine .newtag{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.08em;
+      text-transform:uppercase;color:#0a0a12;background:linear-gradient(90deg,var(--pink),var(--pink2));
+      border-radius:999px;padding:4px 12px;margin-bottom:12px}
+    .mergemine h2{margin:0 0 10px;font-size:clamp(25px,4.4vw,38px);line-height:1.08;letter-spacing:-.01em;
+      background:linear-gradient(90deg,var(--pur2),var(--pink),var(--pink2),var(--cyan));
+      -webkit-background-clip:text;background-clip:text;color:transparent}
+    .mergemine h2 .two{color:var(--txt);-webkit-text-fill-color:var(--txt)}
+    .mergemine .sub{color:#d7cfe6;font-size:16px;line-height:1.6;max-width:660px;margin:0 0 16px}
+    .mergemine .sub strong{color:#fff}
+    .mergemine .mmrow{display:flex;flex-wrap:wrap;gap:9px 22px;margin:0 0 16px;padding:0;list-style:none}
+    .mergemine .mmrow li{color:var(--txt);font-size:14px;font-weight:600;display:flex;align-items:center;gap:8px}
+    .mergemine .mmrow li::before{content:"◆";color:var(--pink2);font-size:10px}
+    .mergemine code.cmd{display:block;background:#0c0a14;border:1px solid var(--line);border-radius:10px;
+      padding:12px 14px;color:var(--cyan);font-size:13px;overflow-x:auto;white-space:nowrap;margin:0 0 16px}
+    .mergemine code.cmd b{color:var(--pink2)}
+    .mergemine .mmbtns{display:flex;flex-wrap:wrap;gap:10px}
+    @media(max-width:720px){.mergemine{margin:18px 12px 6px;padding:20px 16px}.mergemine code.cmd{font-size:11.5px}}
+  </style>
+  <span class="newtag">🐉 New in v3.4.2 · Merge Mining</span>
+  <h2 id="mdl-h">Mine Pearl <span class="two">+</span> modelOS <span class="two">(MDL)</span> at the same time</h2>
+  <p class="sub">modelOS (MDL) merge-mines on top of Pearl (PRL), so the very same share earns you
+     <strong>both coins at once</strong>. One card, one address, same power draw, two payouts. HydraX
+     does it out of the box, no special build.</p>
+  <ul class="mmrow">
+    <li>Two coins, one GPU</li>
+    <li>Zero extra electricity</li>
+    <li>One-line setup</li>
+    <li>Free · flat 1% fee</li>
+  </ul>
+  <code class="cmd">miner.exe -a pearlhash -o us3.pearl.herominers.com:1200 -u <b>YOUR_PRL+YOUR_MDL</b></code>
+  <div class="mmbtns">
+    <a class="btn primary" href="https://github.com/bighurt23/hydrax-miner/releases/download/v3.4.2/HydraX-miner-v3.4.2-win64.zip" target="_blank" rel="noopener">⬇ Get HydraX v3.4.2</a>
+    <a class="btn ghost" href="../#pools">See the merge-mine pool →</a>
+  </div>
+</section>
+
 <!-- COINS -->
 <section class="gear" id="coins">
   <h2>What HydraX mines</h2>
   <p class="sub">One launcher, many coins. Drop your wallet into a bat and you're mining — GPU and CPU at the same time.</p>
   <div class="geargrid">
     <div class="gecard"><span class="tag">GPU · NVIDIA</span><h3>Pearl · PRL</h3><p>pearlhash on RTX 30/40/50-series. Our flagship lane.</p></div>
+    <div class="gecard" style="border-color:var(--pink)"><span class="tag" style="color:var(--pink2);border-color:#5a2a44;background:rgba(255,46,151,.10)">GPU · merge ✦</span><h3>Pearl + modelOS · MDL</h3><p>Merge-mine modelOS (MDL) on top of Pearl — two coins from one share, same power.</p></div>
     <div class="gecard"><span class="tag">GPU</span><h3>Kaspa · KAS</h3><p>kHeavyHash, tuned high-throughput kernel.</p></div>
     <div class="gecard"><span class="tag">GPU</span><h3>Quai · QUAI</h3><p>quaikawpow (ProgPoW lineage).</p></div>
     <div class="gecard"><span class="tag">GPU</span><h3>Ethereum Classic · ETC</h3><p>Etchash — runs ~107 MH/s on a single 5070 Ti.</p></div>
