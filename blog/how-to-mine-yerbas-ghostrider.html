@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>How to Mine Yerbas (YERB) and Raptoreum (RTM): GhostRider CPU Guide (2026)</title>
+<meta name="description" content="How to mine Yerbas (YERB) and Raptoreum (RTM) with GhostRider on your CPU in 2026 — wallets, pools, setup steps, tuning, and how to tri-mine Pearl + modelOS (MDL) + Yerbas on one rig with HydraX."/>
+<meta name="keywords" content="how to mine yerbas, how to mine YERB, yerbas miner, YERB miner, how to mine raptoreum, how to mine RTM, raptoreum miner, RTM miner, ghostrider miner, ghostrider mining, ghostrider algorithm, CPU miner, mine yerbas on CPU, yerbas pool, kriptokyng, pearl yerbas dual mining, pearl mdl yerbas triple mining, code-signed CPU miner, HiveOS ghostrider miner"/>
+<meta name="robots" content="index, follow"/>
+<meta name="theme-color" content="#0a0a12"/>
+<link rel="icon" href="/favicon.png"/>
+<link rel="canonical" href="https://hydrax.gg/blog/how-to-mine-yerbas-ghostrider.html"/>
+<meta property="og:type" content="article"/>
+<meta property="og:title" content="How to Mine Yerbas (YERB) and Raptoreum (RTM): GhostRider CPU Guide (2026)"/>
+<meta property="og:description" content="Mine Yerbas (YERB) and Raptoreum (RTM) with GhostRider on your CPU — wallets, pools, setup, tuning, and how to tri-mine Pearl + MDL + Yerbas on one rig."/>
+<meta property="og:image" content="https://hydrax.gg/og.png"/>
+<link rel="stylesheet" href="../styles.css?v=5"/>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What is GhostRider mining?","acceptedAnswer":{"@type":"Answer","text":"GhostRider is a CPU proof-of-work algorithm that chains fifteen different hash functions with CryptoNight rounds. It is deliberately ASIC and FPGA resistant, so it is mined on ordinary computer processors. Because it leans on memory and cache latency, CPUs with large caches do especially well."}},
+{"@type":"Question","name":"Which coins use the GhostRider algorithm?","acceptedAnswer":{"@type":"Answer","text":"The two main GhostRider coins are Yerbas (YERB) and Raptoreum (RTM). Both are CPU-mined and use the same algorithm, so one GhostRider miner mines either coin. HydraX added GhostRider in v3.4.5."}},
+{"@type":"Question","name":"How do I mine Yerbas (YERB)?","acceptedAnswer":{"@type":"Answer","text":"Download HydraX, open the mine-yerbas launcher, paste in your Yerbas (y-prefixed) address, and run it. The launcher is pre-set to stratum.kriptokyng.com:4533 for solo, or use port 5533 for pool payouts on a smaller rig. HydraX runs GhostRider on any modern CPU at a flat 1% dev fee on Windows, Linux and HiveOS."}},
+{"@type":"Question","name":"How do I mine Raptoreum (RTM)?","acceptedAnswer":{"@type":"Answer","text":"Raptoreum uses the same GhostRider algorithm as Yerbas, so HydraX mines it too. Point the launcher at a Raptoreum pool, paste in your Raptoreum (R-prefixed) address, and run. The miner auto-adapts to the pool."}},
+{"@type":"Question","name":"Can I mine Yerbas and a GPU coin at the same time?","acceptedAnswer":{"@type":"Answer","text":"Yes. GhostRider runs on your CPU, so you can mine a GPU coin at the same time on the same rig. HydraX ships a Pearl + Yerbas launcher and a Pearl + modelOS (MDL) + Yerbas triple, and it automatically keeps a couple of CPU threads free so the GPU side is never starved."}},
+{"@type":"Question","name":"What CPU is best for GhostRider?","acceptedAnswer":{"@type":"Answer","text":"GhostRider is cache and memory-latency bound, so processors with large L3 cache lead, and AMD X3D chips are especially strong. More cores help, and enabling large or huge memory pages gives a further boost. HydraX enables huge pages automatically when it can."}},
+{"@type":"Question","name":"Is Yerbas or Raptoreum mining profitable in 2026?","acceptedAnswer":{"@type":"Answer","text":"It depends on coin price, network difficulty and your electricity rate. GhostRider coins are CPU-mined and approachable, but earnings swing with the market, so run your CPU's hashrate and power cost through a current profit calculator before you commit. Mining a GPU coin at the same time on the same rig improves the economics."}}]}
+</script>
+</head>
+<body>
+<div class="bg"></div>
+<header>
+  <a class="logo" href="../"><img src="/favicon.png" class="spark" alt="HydraX" width="22" height="22"/> Hydrax<span class="gg">.GG</span></a>
+  <nav>
+    <a href="../#calc">Calculators</a>
+    <a href="./">Blog</a>
+    <a href="../miner/">HydraX Miner</a>
+    <a href="../#pools">Pools</a>
+  </nav>
+</header>
+
+<div class="crumbs"><a href="../">Home</a> &rsaquo; <a href="./">Blog</a> &rsaquo; How to mine Yerbas (YERB) and Raptoreum (RTM)</div>
+
+<article class="article">
+  <h1>How to Mine Yerbas (YERB) and Raptoreum (RTM): GhostRider CPU Guide (2026)</h1>
+  <div class="meta">Guide &middot; ~7 min read &middot; by the Hydrax.GG team</div>
+  <p class="lead">GhostRider is the CPU algorithm behind <strong>Yerbas (YERB)</strong> and <strong>Raptoreum (RTM)</strong>, two coins you can mine on the processor you already own, no graphics card required. As of v3.4.5, <a href="../miner/">HydraX</a> mines GhostRider with cleanroom code at a flat 1% dev fee on Windows, Linux and HiveOS, and it can run right alongside a GPU coin so nothing on your rig sits idle.</p>
+
+  <h2>What is GhostRider, and why it runs on your CPU</h2>
+  <p>GhostRider chains fifteen different hash functions together with CryptoNight rounds. That mix is deliberately <strong>ASIC and FPGA resistant</strong>, which is the whole point: it keeps mining on ordinary CPUs and in the hands of regular people instead of specialized hardware farms. The algorithm leans heavily on <strong>memory and cache latency</strong>, so a processor with a big cache does more work per clock than raw core count alone would suggest.</p>
+  <p>Two coins carry GhostRider today: <strong>Yerbas (YERB)</strong> and <strong>Raptoreum (RTM)</strong>. They share the algorithm, so one miner handles both, you just point it at the right coin, pool and wallet.</p>
+
+  <h2>What you need before you start</h2>
+  <ol>
+    <li><strong>A modern CPU.</strong> Any recent x86-64 processor with AES support works. Chips with large L3 cache lead the pack, and AMD's X3D parts are especially strong on GhostRider.</li>
+    <li><strong>A wallet address.</strong> Yerbas addresses start with <code>y</code>; Raptoreum addresses start with <code>R</code>.</li>
+    <li><strong>A pool.</strong> For Yerbas, HydraX ships pointed at <code>stratum.kriptokyng.com</code>. For Raptoreum, pick any Raptoreum pool and drop it in.</li>
+    <li><strong>The miner.</strong> <a href="../miner/">HydraX</a> mines GhostRider on Windows, Linux and HiveOS at a flat 1% dev fee, and it is code-signed by verified publisher HYDRAX LLC.</li>
+  </ol>
+
+  <div class="cta">
+    <strong>Ready to mine? Grab HydraX &rarr;</strong><br/>
+    <a class="btn primary" href="../miner/">Download HydraX Miner</a>
+  </div>
+
+  <h2>How to mine Yerbas (YERB), step by step</h2>
+  <ol>
+    <li><strong>Download HydraX</strong> for your OS from the <a href="https://github.com/bighurt23/hydrax-miner/releases/latest" target="_blank" rel="noopener">releases page</a>.</li>
+    <li><strong>Open the Yerbas launcher</strong> (<code>mine-yerbas.bat</code> on Windows, <code>mine-yerbas.sh</code> on Linux and HiveOS) and paste in your <code>y</code>-prefixed Yerbas address.</li>
+    <li><strong>Pick solo or pool.</strong> The launcher is pre-set to <code>stratum.kriptokyng.com:4533</code> for solo. On a smaller rig, change the port to <code>5533</code> for steady pool payouts.</li>
+    <li><strong>Run it.</strong> Double-click the <code>.bat</code> on Windows, or <code>bash mine-yerbas.sh</code> on Linux and HiveOS. That is it, no config files.</li>
+  </ol>
+  <p>Raptoreum is the same flow: open the launcher, swap the pool for a Raptoreum pool, paste your <code>R</code> address, and run. HydraX auto-adapts to whatever pool you point it at.</p>
+
+  <h2>The rig-owner trick: mine Yerbas and Pearl at the same time</h2>
+  <p>GhostRider only uses your CPU, which means your graphics card is free the whole time. HydraX turns that into free money: run a GPU coin and Yerbas together on one rig. It ships two ready-made launchers for exactly this:</p>
+  <ul>
+    <li><code>mine-pearl-yerb</code> &mdash; Pearl (PRL) on the GPU plus Yerbas on the CPU.</li>
+    <li><code>mine-pearl-mdl-yerb</code> &mdash; Pearl <strong>and</strong> <a href="how-to-mine-pearl-prl.html">modelOS (MDL)</a> merge-mined on the GPU, plus Yerbas on the CPU. Three coins, one rig.</li>
+  </ul>
+  <p>When a GPU coin is running, HydraX automatically keeps a couple of CPU threads free so the card's work is never starved, so you get the GPU coin at full speed and Yerbas on the rest of the cores.</p>
+
+  <h2>Tuning GhostRider for more hashrate</h2>
+  <p>Because GhostRider is cache and memory-latency bound, the biggest levers are memory-side:</p>
+  <ul>
+    <li><strong>Large / huge pages.</strong> These cut memory-access overhead and can add a meaningful boost. HydraX enables them automatically when the OS allows it (on Windows, run it as administrator so it can grab the privilege).</li>
+    <li><strong>Cache is king.</strong> A CPU with more L3 cache, and AMD X3D parts in particular, will out-hash a chip with more cores but less cache.</li>
+    <li><strong>Thread count.</strong> HydraX auto-detects a sensible thread count. Solo GhostRider uses all your cores; when you tri-mine with a GPU coin it holds two back for the card. You can override it in <code>HydraX.conf</code> if you want to.</li>
+  </ul>
+
+  <h2>Is it profitable?</h2>
+  <p>GhostRider coins are CPU-mined and easy to get into, but like any coin the payout rides on price, network difficulty and your power cost. Run your CPU's hashrate and electricity rate through a current <a href="../#calc">profit calculator</a> before committing, and remember that stacking a GPU coin on the same rig is what really moves the economics.</p>
+
+  <div class="cta">
+    <strong>Mine Yerbas solo, or stack it with Pearl + MDL &rarr;</strong><br/>
+    <a class="btn primary" href="../miner/">Get HydraX Miner</a>
+  </div>
+
+  <p class="meta">Related: <a href="how-to-mine-pearl-prl.html">How to mine Pearl (PRL)</a> &middot; <a href="how-to-dual-mine-gpu-cpu.html">How to dual-mine GPU + CPU</a> &middot; <a href="best-free-mining-software-2026.html">Best free mining software 2026</a></p>
+</article>
+
+<footer>
+  <div class="logo small"><img src="/favicon.png" class="spark" alt="HydraX" width="22" height="22"/> Hydrax<span class="gg">.GG</span></div>
+  <p>&copy; 2026 HydraX. Free crypto mining software for GPU and CPU.</p>
+</footer>
+</body>
+</html>
